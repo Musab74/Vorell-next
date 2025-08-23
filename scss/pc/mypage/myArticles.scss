@@ -1,0 +1,85 @@
+#pc-wrap {
+	#my-articles-page {
+	  width: 100%;
+	  height: auto;
+  
+	  .main-title-box {
+		width: auto;
+		height: auto;
+		flex-direction: row;
+		justify-content: space-between;
+  
+		.right-box {
+		  width: 315px;
+  
+		  .main-title {
+			color: #00512c; /* Rolex Green */
+			font-family: $font;
+			font-size: 30px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: normal;
+			letter-spacing: 0.6px;
+			text-transform: capitalize;
+			text-shadow: 0 2px 12px rgba(184, 155, 94, 0.09);
+		  }
+  
+		  .sub-title {
+			color: #4d372c; /* Patek Brown */
+			font-family: $font;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 26px;
+			letter-spacing: 0.3px;
+		  }
+		}
+	  }
+  
+	  .article-list-box {
+		width: 100%;
+		height: auto;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 25px;
+		margin-top: 55px;
+		margin-bottom: 87px;
+	  }
+  
+	  .pagination-conf {
+		width: 100%;
+		height: auto;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+  
+		.total {
+		  p {
+			color: #4d372c; /* Patek Brown */
+			font-size: 14px;
+			text-align: center;
+			font-family: $font;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 26px;
+			letter-spacing: 0.04em;
+		  }
+		}
+  
+		/* Luxury MUI pagination look */
+		.MuiPagination-root {
+		  .Mui-selected {
+			background: #00512c !important;
+			color: #fff !important;
+			border-radius: 8px !important;
+			box-shadow: 0 0 0 2px rgba(184, 155, 94, 0.33);
+		  }
+  
+		  button:not(.Mui-selected) {
+			color: #4d372c;
+		  }
+		}
+	  }
+	}
+  }
+  

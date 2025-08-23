@@ -1,0 +1,298 @@
+#pc-wrap {
+	#member-page {
+	  background: #f7f4ee; /* luxury cream */
+  
+	  .container {
+		.member-page {
+		  position: relative;
+		  width: 100%;
+		  flex-direction: row;
+		  gap: 25px;
+		  padding-top: 96px;
+  
+		  .back-frame {
+			width: 1260px;
+			height: auto;
+			display: flex;
+			flex-direction: row;
+			margin: 100px 0 200px 0;
+			border-radius: 16px;
+			border: 1.5px solid rgba(184, 155, 94, 0.45); /* gold */
+			background: linear-gradient(136deg, #ffffff 60%, #f7f4ee 100%);
+			box-shadow: 0 2px 18px rgba(24, 26, 32, 0.11);
+  
+			.left-config {
+			  position: relative;
+			  padding: 0;
+			  width: 266px;
+			  height: 700px;
+			  border-radius: 16px;
+			  background: linear-gradient(136deg, #ffffff 65%, #fffaf3 100%);
+			  border: 1.5px solid rgba(184, 155, 94, 0.45);
+			  box-shadow: 0 2px 14px rgba(24, 26, 32, 0.08);
+			  margin: 180px 20px 40px 20px;
+  
+			  .profile {
+				margin-top: 5px;
+				position: relative;
+				display: flex;
+				flex-direction: row;
+  
+				.profile-img {
+				  img {
+					width: 79px;
+					height: 79px;
+					border-radius: 50%;
+					right: 30px;
+					bottom: 12px;
+					object-fit: cover;
+					box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgba(184, 155, 94, 0.35); /* gold ring */
+				  }
+				}
+  
+				.user-info {
+				  margin-left: 20px;
+				  display: flex;
+				  flex-direction: column;
+  
+				  .user-name {
+					color: #4d372c; /* Patek Brown */
+					font-family: $font;
+					font-size: 15px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: normal;
+					letter-spacing: .2px;
+				  }
+  
+				  .user-phone {
+					display: flex;
+					flex-direction: row;
+					margin-top: 5px;
+  
+					img {
+					  margin-top: 3px;
+					  margin-right: 4px;
+					  width: 16px;
+					  height: 16px;
+					  filter: drop-shadow(0 1px 4px rgba(184, 155, 94, 0.25));
+					}
+  
+					p, span {
+					  color: #7d664e;
+					  font-family: $font;
+					  font-size: 13px;
+					}
+				  }
+  
+				  .view-list {
+					margin-top: 5px;
+					font-weight: 500;
+					color: #b1a083; /* soft brown */
+				  }
+				}
+			  }
+  
+			  .follow-button-box {
+				height: 35px;
+				flex-direction: row;
+				gap: 10px;
+				align-items: center;
+				margin-top: 15px;
+  
+				button {
+				  border: 1px solid rgba(184, 155, 94, 0.45);
+				  color: #00512c;
+				  background: #ffffff;
+				  font-family: $font;
+				  font-size: 14px;
+				  font-style: normal;
+				  font-weight: 700;
+				  line-height: normal;
+				  border-radius: 10px;
+				  padding: 6px 12px;
+				  transition: background .15s, color .15s, border-color .15s, box-shadow .15s;
+  
+				  &:hover {
+					background: rgba(184, 155, 94, 0.12);
+					color: #003d22;
+					border-color: #00512c;
+					box-shadow: 0 4px 12px rgba(0, 81, 44, 0.18);
+				  }
+				}
+  
+				p {
+				  color: #7d664e;
+				  font-family: $font;
+				  font-size: 14px;
+				  font-style: italic;
+				  font-weight: 400;
+				  line-height: normal;
+				}
+			  }
+  
+			  .sections {
+				height: auto;
+				margin-top: 30px;
+  
+				.section {
+				  height: auto;
+  
+				  .title {
+					color: #4d372c;
+					font-family: $font;
+					font-size: 15px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 28px;
+					letter-spacing: .2px;
+				  }
+  
+				  .sub-section {
+					width: 230px;
+					height: auto;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					cursor: pointer;
+					padding: 0 5px;
+  
+					li {
+					  height: 33px;
+					  margin-bottom: 8px;
+					  border-radius: 10px;
+					  border: 1px solid transparent;
+					  transition: background .15s, color .15s, border-color .15s;
+					}
+  
+					/* active/focused row */
+					.focus {
+					  height: 50px;
+					  background: linear-gradient(90deg, #00512c 55%, #b89b5e 110%);
+					  border-radius: 12px;
+					  border: 1px solid rgba(184, 155, 94, 0.55);
+					  box-shadow: 0 6px 18px rgba(0, 81, 44, 0.18), 0 1px 8px rgba(184, 155, 94, 0.28);
+  
+					  p {
+						font-size: 14px;
+						color: #ffffff;
+						font-family: $font;
+						font-weight: 700;
+					  }
+  
+					  svg, img { filter: drop-shadow(0 1px 4px rgba(184, 155, 94, 0.25)); }
+					}
+  
+					/* hover state for non-focused */
+					li:not(.focus):hover {
+					  background: rgba(184, 155, 94, 0.12);
+					  border-color: rgba(184, 155, 94, 0.45);
+					}
+  
+					.flex-box {
+					  width: 100%;
+					  display: flex;
+					  flex-direction: row;
+					  align-items: center;
+  
+					  .com-icon {
+						display: flex;
+						flex-direction: row;
+						justify-content: flex-end;
+						margin-left: 11px;
+  
+						svg, img {
+						  width: 16px;
+						  height: 16px;
+						  color: #4d372c;
+						}
+					  }
+  
+					  p {
+						width: 40%;
+						font-size: 14px;
+						color: #4d372c;
+						font-family: $font;
+						font-weight: 600;
+					  }
+					}
+				  }
+  
+				  img, svg {
+					width: 16px;
+					height: 16px;
+				  }
+  
+				  .sub-title {
+					margin-left: 12px;
+					color: #4d372c;
+					font-family: $font;
+					font-size: 14px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 55px;
+				  }
+  
+				  .count-title {
+					display: flex;
+					justify-content: flex-end;
+					padding-right: 10px;
+					color: #7d664e;
+					font-family: $font;
+					font-size: 14px;
+					font-style: normal;
+					font-weight: 600;
+					line-height: 55px;
+				  }
+				}
+			  }
+			}
+  
+			.main-config {
+			  position: relative;
+			  width: 936px;
+			  margin-top: 52px;
+			  align-items: center;
+			  gap: 109px;
+  
+			  /* Surface behind lists/cards */
+			  background: #ffffff;
+			  border-radius: 16px;
+			  border: 1px solid rgba(184, 155, 94, 0.28);
+			  box-shadow: 0 2px 16px rgba(24, 26, 32, 0.07);
+			  padding: 22px;
+  
+			  .list-config {
+				display: flex;
+				width: 100%;
+				height: auto;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 22px;
+  
+				/* (Optional) if inner items are plain, give them a soft card feel without touching classnames */
+				> * {
+				  border-radius: 14px;
+				  border: 1px solid rgba(184, 155, 94, 0.23);
+				  background: linear-gradient(136deg, #ffffff 65%, #fffaf3 100%);
+				  box-shadow: 0 2px 12px rgba(24, 26, 32, 0.08);
+				}
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
+  
+  /* If any MUI papers/cards inside these areas still force flat backgrounds, neutralize them locally */
+  #pc-wrap #member-page .back-frame,
+  #pc-wrap #member-page .main-config {
+	.MuiPaper-root,
+	.MuiCard-root,
+	.MuiTableContainer-root {
+	  background: transparent !important;
+	  box-shadow: none;
+	}
+  }
+  

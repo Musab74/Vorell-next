@@ -1,0 +1,283 @@
+// Variables for luxury color
+$gold: #c8b278;
+$emerald: #267147;
+$glass-bg: rgba(255, 255, 255, 0.75);
+$glass-blur: 14px;
+$shadow: 0 6px 32px 0 rgba(38, 113, 71, 0.10);
+
+.store-detail-page-luxury {
+	position: relative;
+	padding: 120px 0 70px;
+	width: 100vw;
+	background: linear-gradient(135deg, #faf6ed 0%, #f1f3f8 100%);
+	min-height: 100vh;
+	font-family: 'Judson', 'Inter', serif;
+
+	.lux-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 34px;
+	}
+
+	.store-info-lux {
+		display: flex;
+		align-items: center;
+		gap: 38px;
+		width: 95vw;
+		max-width: 1240px;
+		margin: 0 auto;
+		padding: 36px 48px;
+		border-radius: 32px;
+		background: $glass-bg;
+		box-shadow: $shadow;
+		backdrop-filter: blur($glass-blur);
+		transition: box-shadow 0.22s;
+
+		&:hover {
+			box-shadow: 0 10px 48px 0 rgba(200, 178, 120, 0.14);
+		}
+
+		.store-avatar {
+			width: 128px;
+			height: 128px;
+			border-radius: 50%;
+			object-fit: cover;
+			box-shadow: 0 4px 22px 0 #ede7d4;
+			border: 3px solid $gold;
+		}
+
+		.info-lux {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			cursor: pointer;
+
+			strong {
+				color: #191919;
+				font-family: 'Playfair Display', serif;
+				font-size: 2rem;
+				font-weight: 700;
+				letter-spacing: 0.5px;
+				text-shadow: 0 2px 12px #eee5d6;
+			}
+
+			div {
+				margin-top: 16px;
+				display: flex;
+				align-items: center;
+				gap: 12px;
+
+				img {
+					width: 22px;
+					height: 22px;
+				}
+
+				span {
+					color: $emerald;
+					font-weight: 600;
+					font-size: 1.25rem;
+					letter-spacing: 0.3px;
+				}
+			}
+		}
+	}
+
+	.store-watches-list-lux {
+		position: relative;
+		width: 100vw;
+		max-width: 1260px;
+		margin: 0 auto;
+		background: transparent;
+		box-shadow: none;
+		border-radius: 20px;
+
+		.card-wrap-lux {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr); // Three columns
+			gap: 38px 26px; // row gap and column gap
+			padding: 30px 0 18px 0;
+
+			.wrap-main-lux {
+				margin: 0;
+			}
+		}
+
+		.pagination-lux {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 10px;
+
+			.pagination-box-lux {
+				margin-bottom: 8px;
+
+				.MuiPagination-root {
+					button {
+						background: $glass-bg;
+						border-radius: 16px !important;
+						color: $emerald !important;
+						font-weight: 700;
+						box-shadow: 0 1px 8px 0 rgba(200, 178, 120, 0.11);
+
+						&.Mui-selected {
+							background: $emerald !important;
+							color: #fff !important;
+						}
+					}
+				}
+			}
+
+			span {
+				margin-top: 12px;
+				color: #222;
+				font-size: 15px;
+				font-weight: 400;
+				font-family: 'Inter', serif;
+			}
+
+			.no-data-lux {
+				img {
+					width: 40px;
+					margin-bottom: 10px;
+				}
+
+				p {
+					color: #bbb;
+				}
+			}
+		}
+	}
+
+	.review-box-lux {
+		width: 98vw;
+		max-width: 1172px;
+		margin: 48px auto 0;
+		background: $glass-bg;
+		border-radius: 36px;
+		box-shadow: 0 8px 36px 0 rgba(200, 178, 120, 0.08);
+		backdrop-filter: blur(18px);
+		padding: 60px 46px;
+
+		.main-intro-lux {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+
+			span {
+				font-size: 2.2rem;
+				font-weight: 700;
+				color: $emerald;
+				letter-spacing: 0.5px;
+				font-family: 'Playfair Display', serif;
+			}
+
+			p {
+				font-size: 1.15rem;
+				color: #818181;
+				margin-bottom: 8px;
+			}
+		}
+
+		.review-wrap-lux {
+			margin: 34px 0 0 0;
+			background: #fff;
+			border-radius: 16px;
+			box-shadow: 0 2px 22px 0 rgba(38, 113, 71, 0.03);
+			padding: 28px 30px;
+
+			.title-box-lux {
+				display: flex;
+				align-items: center;
+
+				svg {
+					color: #fae17b;
+					font-size: 18px;
+				}
+
+				span {
+					margin-left: 8px;
+					color: #191919;
+					font-size: 1.14rem;
+					font-weight: 600;
+				}
+			}
+
+			.pagination-box-lux {
+				margin-top: 17px;
+			}
+		}
+
+		.leave-review-config-lux {
+			margin-top: 34px;
+			background: #f8f7f4;
+			border-radius: 18px;
+			box-shadow: 0 1px 10px 0 rgba(38, 113, 71, 0.07);
+			padding: 38px 28px;
+
+			.main-title-lux {
+				color: $emerald;
+				font-size: 1.17rem;
+				font-weight: 700;
+				letter-spacing: 0.2px;
+				margin-bottom: 8px;
+			}
+
+			.review-title-lux {
+				color: #191919;
+				font-size: 0.97rem;
+				font-weight: 600;
+				margin-bottom: 7px;
+			}
+
+			textarea {
+				width: 100%;
+				min-height: 120px;
+				padding: 22px;
+				border-radius: 10px;
+				border: 1.5px solid #ece5d7;
+				background: #fff;
+				color: #222;
+				font-size: 1.02rem;
+				font-family: 'Inter', serif;
+				font-weight: 400;
+				transition: border 0.17s;
+				margin-bottom: 14px;
+
+				&:focus {
+					border-color: $emerald;
+				}
+			}
+
+			.submit-btn-lux {
+				width: 100%;
+				display: flex;
+				justify-content: flex-end;
+
+				.submit-review-lux {
+					background: linear-gradient(90deg, $emerald 50%, $gold 100%);
+					color: #fff;
+					font-weight: 600;
+					font-size: 1.07rem;
+					letter-spacing: 0.02em;
+					border: none;
+					box-shadow: 0 2px 10px 0 #e5eee9;
+					border-radius: 14px;
+					padding: 13px 38px;
+					transition: box-shadow 0.2s, background 0.18s;
+
+					&:hover {
+						box-shadow: 0 2px 28px 0 #ffeabb;
+						background: linear-gradient(80deg, $gold 0%, $emerald 100%);
+					}
+				}
+
+				.title-lux {
+					color: #fff;
+					font-size: 1.07rem;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}

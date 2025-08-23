@@ -1,0 +1,104 @@
+// libs/components/layout/HeaderVideo.tsx
+import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
+
+// Put your video sources here
+const videoSources = [
+  "https://media.rolex.com/video/upload/c_limit,w_2880/f_auto:video/q_auto:eco/v1/rolexcom/new-watches/2025/hub/videos/autoplay/cover/rolex-watches-new-watches-2025-cover-autoplay",
+  "  https://www.omegawatches.co.kr/media/wysiwyg/video/diver300m-desktop.mp4"];
+
+const HeaderVideo = () => {
+  const [src, setSrc] = useState(videoSources[0]);
+
+  useEffect(() => {
+    // Choose a random video each time
+    setSrc(videoSources[Math.floor(Math.random() * videoSources.length)]);
+  }, []);
+
+  return (
+    <Box className="header-main" sx={{
+      width: "100vw",
+      height: "120vh",
+      minHeight: 700,
+      position: "relative",
+      overflow: "hidden",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}>
+      {/* Video BG */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        src={src}
+        style={{
+          objectFit: "cover",
+          width: "100vw",
+          height: "110vh",
+          position: "absolute",
+          left: 0,
+          top: 0,
+          zIndex: 0,
+        }}
+      />
+      {/* Overlay (for darken effect if you want) */}
+      <Box
+        sx={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          width: "100vw",
+          height: "110vh",
+          background: "linear-gradient(0deg,rgba(0,0,0,0.17) 60%,rgba(0,0,0,0.07) 100%)",
+          zIndex: 1,
+        }}
+      />
+      {/* Titles */}
+      <Box
+        sx={{
+          position: "relative",
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            marginTop: "110px",
+            color: "#fff",
+            letterSpacing: "0.16em",
+            fontWeight: 400,
+            fontSize: "2rem",
+            fontFamily: "Judson, serif",
+            textShadow: "0 4px 32px rgba(0,0,0,.17)",
+            textAlign: "center",
+            textTransform: "uppercase",
+          }}
+        >
+          THE COLLECTION
+        </div>
+        <h1
+          style={{
+            color: "#fff",
+            fontWeight: 700,
+            fontSize: "6vw",
+            lineHeight: "1.1",
+            fontFamily: "Judson, serif",
+            margin: "0.1em 0 0 0",
+            textShadow: "0 6px 64px rgba(0,0,0,.27)",
+            textAlign: "center",
+          }}
+        >
+          Vorell watches
+        </h1>
+      </Box>
+    </Box>
+  );
+};
+
+export default HeaderVideo;

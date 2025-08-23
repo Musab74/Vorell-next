@@ -1,0 +1,138 @@
+#pc-wrap {
+	#write-article-page {
+	  width: 100%;
+	  height: auto;
+  
+	  .main-title-box {
+		width: auto;
+		height: auto;
+		flex-direction: row;
+		justify-content: space-between;
+  
+		.right-box {
+		  width: 315px;
+  
+		  .main-title {
+			color: #00512c; /* Rolex Green */
+			font-family: $font;
+			font-size: 30px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: normal;
+			letter-spacing: 0.6px;
+			text-transform: capitalize;
+			text-shadow: 0 2px 12px rgba(184, 155, 94, 0.09);
+		  }
+  
+		  .sub-title {
+			color: #4d372c; /* Patek Brown */
+			font-family: $font;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 26px;
+			letter-spacing: 0.3px;
+		  }
+		}
+	  }
+  
+	  .right-wrap {
+		width: 100%;
+		height: auto;
+		background: linear-gradient(136deg, #ffffff 60%, #f7f4ee 100%);
+		border-radius: 14px;
+		border: 1.5px solid rgba(184, 155, 94, 0.45);
+		box-shadow: 0 2px 16px rgba(24, 26, 32, 0.07);
+  
+		.cont_bd {
+		  padding: 30px 0px;
+  
+		  .form_hd > div {
+			margin-bottom: 16px;
+		  }
+		}
+  
+		.flex-space {
+		  .btn-next {
+			background: #00512c;
+			color: #fff;
+			border-radius: 8px;
+			font-weight: 600;
+			padding: 8px 20px;
+			transition: background 0.2s ease;
+  
+			&:hover {
+			  background: #003d22;
+			}
+		  }
+		}
+  
+		.select {
+		  width: 214px;
+		  height: 40px;
+		  font-size: 14px;
+		  border: 1px solid rgba(184, 155, 94, 0.45);
+		  border-radius: 8px;
+		  padding: 0 12px;
+		  color: #4d372c;
+		}
+  
+		.input-tit {
+		  font-size: 14px;
+		  padding: 0 16px;
+		  margin-top: 16px;
+		  border: 1px solid rgba(184, 155, 94, 0.35);
+		  border-radius: 8px;
+		  background: #fff;
+		  color: #4d372c;
+		}
+  
+		.btn-flex {
+		  margin-top: 40px;
+		}
+	  }
+  
+	  .css-guvl2y-MuiButtonBase-root-MuiButton-root {
+		background: #00512c;
+		border-radius: 8px;
+		padding: 8px 16px;
+  
+		&:hover {
+		  background: #003d22;
+		}
+  
+		svg {
+		  fill: #ffffff;
+		}
+	  }
+  
+	  .toastui-editor-popup-body {
+		padding: 20px;
+		background: #fffaf3; /* soft cream */
+		border-radius: 8px;
+	  }
+  
+	  .youtube-input {
+		padding: 8px 16px;
+		border: 1px solid rgba(184, 155, 94, 0.35);
+		border-radius: 8px;
+		background: #fff;
+	  }
+  
+	  .youtube-div {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	  }
+  
+	  .toastui-editor-defaultUI button {
+		padding: 4px;
+		border-radius: 6px;
+  
+		&:hover {
+		  background: rgba(184, 155, 94, 0.12);
+		}
+	  }
+	}
+  }
+  

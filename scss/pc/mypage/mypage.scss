@@ -1,0 +1,474 @@
+#pc-wrap {
+	#my-page {
+	  background: #f7f4ee; // luxury cream bg
+  
+	  .container {
+		.my-page {
+		  position: relative;
+		  width: 100%;
+		  flex-direction: row;
+		  gap: 25px;
+		  padding-top: 96px;
+  
+		  .back-frame {
+			width: 1260px;
+			height: auto;
+			display: flex;
+			flex-direction: row;
+			margin: 100px 0 200px 0;
+			border-radius: 14px; // subtle upgrade
+			border: 1.5px solid rgba(184, 155, 94, 0.55); // gold accent
+			background: linear-gradient(136deg, #ffffff 60%, #f7f4ee 100%) !important; // ensure visible
+			box-shadow: 0 2px 16px rgba(24, 26, 32, 0.11);
+  
+			/* wipe stray white backgrounds inside the main card */
+			.MuiPaper-root,
+			.MuiTableContainer-root,
+			.MuiCard-root {
+			  background: transparent !important;
+			  box-shadow: none;
+			}
+  
+			.left-config {
+			  position: relative;
+			  padding: 0;
+			  width: 266px;
+			  height: 700px;
+			  border-radius: 14px;
+			  background: #fff;
+			  border: 1.5px solid rgba(184, 155, 94, 0.55);
+			  box-shadow: 0 2px 14px rgba(24, 26, 32, 0.08);
+			  margin: 52px 20px 40px 20px; /* aligned to top card (was 180px) */
+			  overflow: hidden;
+  
+			  .profile {
+				margin-top: 5px;
+				position: relative;
+				display: flex;
+				flex-direction: row;
+				padding: 14px 16px;
+  
+				.profile-img {
+				  img {
+					width: 79px;
+					height: 79px;
+					border-radius: 50%;
+					right: 30px;
+					bottom: 12px;
+					object-fit: cover;
+					box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px rgba(184, 155, 94, 0.35);
+				  }
+				}
+  
+				.user-info {
+				  margin-left: 20px;
+				  display: flex;
+				  flex-direction: column;
+  
+				  .user-name {
+					color: #4d372c; // Patek Brown
+					font-family: $font;
+					font-size: 15px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: normal;
+					letter-spacing: 0.2px;
+				  }
+  
+				  .user-phone {
+					display: flex;
+					flex-direction: row;
+  
+					img {
+					  margin-top: 7px;
+					  margin-right: 4px;
+					  width: 16px;
+					  height: 16px;
+					}
+				  }
+  
+				  .view-list {
+					font-weight: 700;
+					color: #00512c; // Rolex Green
+				  }
+				}
+			  }
+  
+			  .sections {
+				height: auto;
+				gap: 45px;
+				margin-top: 18px;
+				padding: 0 14px 16px;
+  
+				.section {
+				  height: auto;
+  
+				  .title {
+					font-family: $font;
+					font-size: 15px;
+					font-style: normal;
+					font-weight: 600;
+					line-height: 28px;
+					color: #4d372c;
+					letter-spacing: 0.3px;
+				  }
+  
+				  .sub-section {
+					width: 230px;
+					height: 26px;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					cursor: pointer;
+					padding: 0 5px;
+  
+					li {
+					  height: 33px;
+					  margin-bottom: 6px;
+					  border-radius: 8px;
+					  transition: background 0.18s, transform 0.12s;
+  
+					  &:hover {
+						background: rgba(184, 155, 94, 0.09);
+						transform: translateY(-1px);
+					  }
+					}
+  
+					.focus {
+					  height: 50px;
+					  background: linear-gradient(90deg, #00512c 55%, #b89b5e 110%);
+					  border-radius: 10px;
+					  box-shadow: 0 6px 18px rgba(0, 81, 44, 0.18), 0 1px 8px rgba(184, 155, 94, 0.35);
+  
+					  p {
+						font-size: 14px;
+						color: #fff;
+						font-weight: 700;
+						letter-spacing: 0.2px;
+					  }
+					}
+  
+					.flex-box {
+					  display: flex;
+					  align-items: center;
+  
+					  .com-icon {
+						display: flex;
+						flex-direction: row;
+						justify-content: flex-end;
+						margin-left: 11px;
+					  }
+  
+					  p {
+						font-size: 14px;
+						color: #4d372c;
+					  }
+					}
+				  }
+  
+				  img {
+					width: 16px;
+					height: 16px;
+				  }
+  
+				  .sub-title {
+					margin-left: 12px;
+					color: #181a20;
+					font-family: $font;
+					font-size: 14px;
+					font-style: normal;
+					font-weight: 600;
+					line-height: 55px;
+				  }
+				}
+			  }
+			}
+  
+			.main-config {
+			  position: relative;
+			  width: 936px;
+			  margin-top: 52px;
+			  align-items: center;
+			  gap: 109px;
+  
+			  .list-config {
+				display: flex;
+				width: 100%;
+				height: auto;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 22px;
+  
+				.card-config {
+				  width: 296px;
+				  height: 413px;
+				  margin-bottom: 7px;
+				  border-radius: 18px;
+				  background: linear-gradient(135deg, #ffffff 65%, #f7f4ee 100%);
+				  border: 1.5px solid #b89b5e;
+				  box-shadow: 0 2px 18px rgba(24, 26, 32, 0.12);
+				  transition: box-shadow 0.18s, transform 0.14s, border-color 0.15s;
+				  overflow: hidden;
+				  display: flex;
+				  flex-direction: column;
+  
+				  &:hover {
+					box-shadow: 0 8px 36px rgba(0, 81, 44, 0.11), 0 2px 18px rgba(184, 155, 94, 0.45);
+					transform: translateY(-2px) scale(1.01);
+					border-color: #00512c;
+				  }
+  
+				  .top {
+					position: relative;
+					width: 100%;
+					height: 240px;
+  
+					img {
+					  width: 100%;
+					  height: 100%;
+					  object-fit: cover;
+					  border-radius: 18px 18px 0 0;
+					  border-bottom: 1.5px solid rgba(184, 155, 94, 0.15);
+					}
+  
+					.top-badge {
+					  position: absolute;
+					  top: 18px;
+					  left: 16px;
+					  display: flex;
+					  min-width: 75px;
+					  height: 30px;
+					  justify-content: center;
+					  align-items: center;
+					  border-radius: 8px;
+					  padding: 6px 18px;
+					  background: linear-gradient(90deg, #00512c 58%, #b89b5e 120%);
+					  color: #fff;
+					  text-align: center;
+					  text-shadow: 0 4px 12px rgba(184, 155, 94, 0.40);
+					  font-family: $font;
+					  font-size: 13px;
+					  font-weight: 700;
+					  letter-spacing: 0.045em;
+  
+					  img {
+						height: 16px;
+					  }
+					}
+  
+					.price-box {
+					  position: absolute;
+					  bottom: 18px;
+					  left: 18px;
+					  padding: 7px 18px;
+					  align-items: center;
+					  border-radius: 6px;
+					  border: 1px solid rgba(184, 155, 94, 0.27);
+					  background: #fffbe9;
+					  box-shadow: 0 2px 8px rgba(184, 155, 94, 0.14);
+  
+					  p {
+						color: #00512c;
+						font-family: $font;
+						font-size: 15px;
+						font-weight: 700;
+						letter-spacing: 0.01em;
+					  }
+					}
+				  }
+  
+				  .bottom {
+					width: 100%;
+					height: 100%;
+					padding: 20px 16px 10px 16px;
+  
+					.name-address {
+					  width: 100%;
+					  height: 48px;
+					  gap: 5px;
+					  margin-bottom: 20px;
+  
+					  .name {
+						width: 100%;
+						height: 23px;
+						overflow: hidden;
+  
+						p {
+						  color: #4d372c;
+						  font-family: $font;
+						  font-size: 16px;
+						  font-style: normal;
+						  font-weight: 700;
+						  line-height: normal;
+						  text-transform: capitalize;
+						  letter-spacing: 0.01em;
+						}
+					  }
+  
+					  .address {
+						width: 100%;
+						overflow: hidden;
+  
+						p {
+						  color: #7d664e;
+						  font-family: $font;
+						  font-size: 13px;
+						  font-style: normal;
+						  font-weight: 400;
+						  line-height: normal;
+						}
+					  }
+					}
+  
+					.options {
+					  flex-direction: row;
+					  width: 100%;
+					  height: 20px;
+					  gap: 20px;
+					  margin-bottom: 10px;
+  
+					  .option {
+						flex-direction: row;
+						gap: 5px;
+						align-items: center;
+  
+						p {
+						  color: #00512c;
+						  font-family: $font;
+						  font-size: 13px;
+						  font-style: normal;
+						  font-weight: 500;
+						  line-height: normal;
+						}
+					  }
+					}
+  
+					.divider {
+					  width: 100%;
+					  height: 1.2px;
+					  background: rgba(184, 155, 94, 0.19);
+					  margin-bottom: 14px;
+					}
+  
+					.type-buttons {
+					  flex-direction: row;
+					  width: 100%;
+					  justify-content: space-between;
+					  align-items: center;
+  
+					  .type {
+						flex-direction: row;
+						align-items: center;
+						gap: 7px;
+  
+						p {
+						  color: #00512c;
+						  font-family: $font;
+						  font-style: normal;
+						  font-size: 13px;
+						  font-weight: 600;
+						  line-height: normal;
+						}
+  
+						.disabled-type {
+						  color: #b1a083;
+						  font-family: $font;
+						  font-style: normal;
+						  font-size: 13px;
+						  font-weight: 400;
+						  line-height: normal;
+						}
+					  }
+  
+					  .buttons {
+						flex-direction: row;
+						width: auto;
+						gap: 12px;
+						justify-content: center;
+						align-items: center;
+						padding-right: 10px;
+  
+						svg {
+						  cursor: pointer;
+						  transition: color 0.13s, transform 0.12s;
+						  color: #4d372c;
+  
+						  &:hover {
+							color: #b89b5e;
+							transform: translateY(-1px);
+						  }
+						}
+					  }
+					}
+				  }
+				}
+			  }
+  
+			  .pagination-config {
+				width: 442px;
+				height: 86px;
+				align-items: center;
+				gap: 20px;
+  
+				.pagination-box {
+				  width: 100%;
+				  align-items: center;
+				}
+  
+				.total-result {
+				  p {
+					color: #4d372c;
+					text-align: center;
+					font-family: $font;
+					font-size: 18px;
+					font-style: normal;
+					font-weight: 500;
+					line-height: 26px;
+					letter-spacing: 0.04em;
+				  }
+				}
+			  }
+			}
+		  }
+		}
+	  }
+  
+	  /* Luxury pagination accent for MUI */
+	  .MuiPagination-root {
+		.Mui-selected {
+		  background: #00512c !important;
+		  color: #fff !important;
+		  border-radius: 8px !important;
+		  box-shadow: 0 0 0 2px rgba(184, 155, 94, 0.33);
+		}
+  
+		button:not(.Mui-selected) {
+		  color: #4d372c;
+		}
+	  }
+	}
+  }
+  
+  /* Optional: themed table header/body if present inside back-frame */
+  #pc-wrap #my-page .back-frame .MuiTableHead-root th {
+	background: rgba(184, 155, 94, 0.06);
+	color: #4d372c;
+	font-weight: 700;
+  }
+  
+  #pc-wrap #my-page .back-frame .MuiTableBody-root td {
+	border-color: rgba(184, 155, 94, 0.22);
+  }
+  
+  /* Empty state visuals */
+  #pc-wrap #my-page .back-frame .empty-list,
+  #pc-wrap #my-page .back-frame .empty-list-content {
+	background: linear-gradient(180deg, rgba(184, 155, 94, 0.05), rgba(0, 81, 44, 0.03));
+	border: 1px dashed rgba(184, 155, 94, 0.35);
+	border-radius: 12px;
+  }
+  
+  #pc-wrap #my-page .back-frame .empty-list strong {
+	color: #4d372c;
+  }
+  

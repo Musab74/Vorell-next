@@ -1,0 +1,325 @@
+#pc-wrap {
+	#my-page {
+	  #my-favorite-watches-page {  
+			width: 100%;
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			gap: 57px;
+			background: white; // Luxury cream background
+
+			.main-title-box {
+				width: auto;
+				height: auto;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				background: none;
+
+				.right-box {
+					width: 315px;
+
+					.main-title {
+						color: #00512c; // Rolex Green
+						font-family: $font;
+						font-size: 30px;
+						font-style: normal;
+						font-weight: 700;
+						letter-spacing: 0.8px;
+						text-transform: capitalize;
+						margin-bottom: 4px;
+						text-shadow: 0 2px 12px rgba(184, 155, 94, 0.09);
+					}
+
+					.sub-title {
+						color: #4d372c; // Patek Brown
+						font-family: $font;
+						font-size: 14px;
+						font-style: normal;
+						font-weight: 400;
+						line-height: 26px;
+						letter-spacing: 0.3px;
+					}
+				}
+			}
+
+			.favorites-list-box {
+				background: white;
+				width: 100%;
+				min-height: 440px;
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: row;
+				justify-content: flex-start;
+				gap: 28px;
+				padding-bottom: 10px;
+
+				.no-data {
+					width: 100%;
+					text-align: center;
+					padding: 60px 0;
+
+					img {
+						width: 50px;
+						margin-bottom: 12px;
+					}
+
+					p {
+						color: #b89b5e;
+						font-size: 17px;
+						font-weight: 500;
+						letter-spacing: 0.04em;
+						font-family: $font;
+					}
+				}
+
+				.card-config {
+					width: 30%;
+					height: 413px;
+					margin-bottom: 7px;
+					border-radius: 18px;
+					background: linear-gradient(136deg, #ffffff 60%, #f7f4ee 100%);
+					box-shadow: 0 2px 16px rgba(24, 26, 32, 0.11);
+					transition: box-shadow 0.22s, transform 0.18s;
+					border: 1.5px solid #b89b5e;
+					overflow: hidden;
+					display: flex;
+					flex-direction: column;
+
+					&:hover {
+						box-shadow: 0 8px 40px rgba(0, 81, 44, 0.10), 0 2px 24px #b89b5e77;
+						transform: translateY(-3px) scale(1.013);
+						border-color: #00512c;
+					}
+
+					.top {
+						position: relative;
+						width: 100%;
+						height: 240px;
+
+						a {
+							height: 100%;
+							display: block;
+						}
+
+						img {
+							width: 100%;
+							height: 100%;
+							object-fit: cover;
+							border-radius: 18px 18px 0 0;
+							border-bottom: 1.5px solid #b89b5e22;
+						}
+
+						.top-badge {
+							position: absolute;
+							top: 18px;
+							left: 16px;
+							display: flex;
+							min-width: 72px;
+							height: 28px;
+							justify-content: center;
+							align-items: center;
+							border-radius: 8px;
+							padding: 6px 18px;
+							background: linear-gradient(90deg, #00512c 55%, #b89b5e 110%);
+							color: #fff;
+							text-align: center;
+							text-shadow: 0px 4px 12px #b89b5e33;
+							font-family: $font;
+							font-size: 13px;
+							font-weight: 700;
+							letter-spacing: 0.05em;
+
+							img {
+								height: 16px;
+							}
+						}
+
+						.price-box {
+							position: absolute;
+							bottom: 18px;
+							left: 18px;
+							padding: 7px 18px;
+							align-items: center;
+							border-radius: 6px;
+							border: 1px solid #b89b5e44;
+							background: #fffbe9;
+							box-shadow: 0 2px 8px #b89b5e26;
+
+							p {
+								color: #00512c;
+								font-family: $font;
+								font-size: 15px;
+								font-weight: 700;
+								letter-spacing: 0.01em;
+							}
+						}
+					}
+
+					.bottom {
+						width: 100%;
+						height: 173px;
+						padding: 19px 15px 14px 17px;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						background: none;
+
+						.name-address {
+							width: 100%;
+							min-height: 42px;
+							gap: 5px;
+							margin-bottom: 17px;
+
+							.name {
+								width: 100%;
+								height: 23px;
+								overflow: hidden;
+
+								p {
+									color: #4d372c;
+									font-family: $font;
+									font-size: 16px;
+									font-style: normal;
+									font-weight: 700;
+									line-height: normal;
+									text-transform: capitalize;
+									letter-spacing: 0.01em;
+								}
+							}
+
+							.address {
+								width: 100%;
+								overflow: hidden;
+
+								p {
+									color: #7d664e;
+									font-family: $font;
+									font-size: 13px;
+									font-style: normal;
+									font-weight: 400;
+									line-height: normal;
+								}
+							}
+						}
+
+						.options {
+							display: flex;
+							flex-direction: row;
+							width: 100%;
+							height: 22px;
+							gap: 24px;
+							margin-bottom: 8px;
+
+							.option {
+								display: flex;
+								flex-direction: row;
+								gap: 6px;
+								align-items: center;
+
+								p {
+									color: #00512c;
+									font-family: $font;
+									font-size: 13px;
+									font-weight: 500;
+								}
+							}
+						}
+
+						.divider {
+							width: 100%;
+							height: 1.2px;
+							background: #b89b5e30;
+							margin-bottom: 14px;
+						}
+
+						.type-buttons {
+							display: flex;
+							flex-direction: row;
+							width: 100%;
+							justify-content: space-between;
+							align-items: center;
+
+							.type {
+								display: flex;
+								flex-direction: row;
+								align-items: center;
+								gap: 8px;
+
+								p {
+									color: #00512c;
+									font-family: $font;
+									font-size: 13px;
+									font-weight: 600;
+								}
+
+								.disabled-type {
+									color: #b1a083;
+									font-family: $font;
+									font-size: 13px;
+									font-weight: 400;
+								}
+							}
+
+							.buttons {
+								display: flex;
+								flex-direction: row;
+								width: auto;
+								gap: 13px;
+								justify-content: center;
+								align-items: center;
+								padding-right: 10px;
+
+								svg {
+									cursor: pointer;
+									transition: color 0.14s;
+									color: #4d372c;
+
+									&:hover {
+										color: #b89b5e;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			.pagination-config {
+				width: 100%;
+				height: auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 36px;
+
+				.total-result {
+					p {
+						color: #4d372c;
+						text-align: center;
+						font-family: $font;
+						font-size: 15px;
+						font-style: normal;
+						font-weight: 500;
+						line-height: 26px;
+						letter-spacing: 0.04em;
+					}
+				}
+			}
+		}
+
+		// Luxury-styled MUI pagination
+		.MuiPagination-root {
+			.Mui-selected {
+				background: #00512c !important;
+				color: #fff !important;
+				border-radius: 8px !important;
+				box-shadow: 0 0 0 2px #b89b5e55;
+			}
+
+			button:not(.Mui-selected) {
+				color: #4d372c;
+			}
+		}
+	}
+}
