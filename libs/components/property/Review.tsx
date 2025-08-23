@@ -1,3 +1,4 @@
+// libs/components/property/Review.tsx
 import React from 'react';
 import { Stack, Typography, Box } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
@@ -23,6 +24,7 @@ const Review = ({ comment }: ReviewProps) => {
 
   /** HANDLERS **/
   const goMemberPage = (id: string) => {
+    if (!id) return;
     if (id === user?._id) router.push('/mypage');
     else router.push(`/member?memberId=${id}`);
   };
@@ -35,16 +37,28 @@ const Review = ({ comment }: ReviewProps) => {
   const gold = '#bfa15e';
 
   return (
-    <Stack className="review-watch-config" sx={{
-      background: '#fffdfa',
-      borderRadius: '22px',
-      boxShadow: '0 2px 28px 0 rgba(186,165,125,0.08)',
-      p: '22px 34px',
-      mb: 2,
-      border: `1px solid #f2e6d7`
-    }}>
-      <Stack className="review-watch-mb-info" direction="row" alignItems="center" spacing={2} sx={{ mb: 1 }}>
+    <Stack
+      component="div"
+      className="review-watch-config"
+      sx={{
+        background: '#fffdfa',
+        borderRadius: '22px',
+        boxShadow: '0 2px 28px 0 rgba(186,165,125,0.08)',
+        p: '22px 34px',
+        mb: 2,
+        border: `1px solid #f2e6d7`,
+      }}
+    >
+      <Stack
+        component="div"
+        className="review-watch-mb-info"
+        direction="row"
+        alignItems="center"
+        spacing={2}
+        sx={{ mb: 1 }}
+      >
         <Box
+          component="div"
           sx={{
             width: 62,
             height: 62,
@@ -56,7 +70,7 @@ const Review = ({ comment }: ReviewProps) => {
             boxShadow: '0 1px 8px 0 rgba(186,165,125,0.12)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
         >
           <img
@@ -70,7 +84,8 @@ const Review = ({ comment }: ReviewProps) => {
             }}
           />
         </Box>
-        <Stack>
+
+        <Stack component="div">
           <Typography
             className="name"
             onClick={() => goMemberPage(comment?.memberData?._id as string)}
@@ -90,12 +105,16 @@ const Review = ({ comment }: ReviewProps) => {
           >
             {comment.memberData?.memberNick}
           </Typography>
-          <Typography className="date" sx={{ color: '#88806b', fontSize: 13, mt: 0.3, fontFamily: `'Inter', serif` }}>
-            <Moment format={'DD MMM, YYYY'}>{comment.createdAt}</Moment>
+          <Typography
+            className="date"
+            sx={{ color: '#88806b', fontSize: 13, mt: 0.3, fontFamily: `'Inter', serif` }}
+          >
+            <Moment format="DD MMM, YYYY">{comment.createdAt}</Moment>
           </Typography>
         </Stack>
       </Stack>
-      <Stack className="desc-box" sx={{ mt: 0.5 }}>
+
+      <Stack component="div" className="desc-box" sx={{ mt: 0.5 }}>
         <Typography
           className="description"
           sx={{
@@ -108,7 +127,7 @@ const Review = ({ comment }: ReviewProps) => {
             fontWeight: 500,
             letterSpacing: '0.01em',
             boxShadow: '0 1px 6px 0 rgba(186,165,125,0.07)',
-            border: `1px solid #f3e6c1`
+            border: `1px solid #f3e6c1`,
           }}
         >
           {comment.commentContent}

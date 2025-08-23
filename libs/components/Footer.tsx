@@ -1,3 +1,4 @@
+import React from 'react';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -10,27 +11,30 @@ const Footer = () => {
   const device = useDeviceDetect();
 
   const contactPhone = '+82 10 4867 2909';
-  const brand = "Vorell";
-  const logoPath = "/img/logo/Vorell-gold.png";
+  const brand = 'Vorell';
+  const logoPath = '/img/logo/Vorell-gold.png';
 
   if (device === 'mobile') {
     return (
-      <Stack className="footer-container">
-        <Stack className="main">
-          <Stack className="left">
-            <Box className="footer-box">
+      <Stack component="div" className="footer-container">
+        <Stack component="div" className="main">
+          <Stack component="div" className="left">
+            <Box component="div" className="footer-box">
               <img src={logoPath} alt="Vorell Logo" className="logo" style={{ height: 36 }} />
             </Box>
-            <Box className="footer-box">
+
+            <Box component="div" className="footer-box">
               <span>Customer Care</span>
               <p>{contactPhone}</p>
             </Box>
-            <Box className="footer-box">
+
+            <Box component="div" className="footer-box">
               <span>Live Support</span>
               <p>{contactPhone}</p>
               <span>Need Help?</span>
             </Box>
-            <Box className="footer-box">
+
+            <Box component="div" className="footer-box">
               <p>Follow us on social media</p>
               <div className="media-box">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FacebookOutlinedIcon /></a>
@@ -40,8 +44,9 @@ const Footer = () => {
               </div>
             </Box>
           </Stack>
-          <Stack className="right">
-            <Box className="bottom">
+
+          <Stack component="div" className="right">
+            <Box component="div" className="bottom">
               <div>
                 <strong>Popular Search</strong>
                 <span>Luxury Watches</span>
@@ -66,7 +71,8 @@ const Footer = () => {
             </Box>
           </Stack>
         </Stack>
-        <Stack className="second">
+
+        <Stack component="div" className="second">
           <span>© {brand} – All rights reserved. {brand} {moment().year()}</span>
         </Stack>
       </Stack>
@@ -75,22 +81,25 @@ const Footer = () => {
 
   // DESKTOP
   return (
-    <Stack className="footer-container">
-      <Stack className="main">
-        <Stack className="left">
-          <Box className="footer-box">
-            <img src={String(logoPath)} alt="Vorell Logo" className="logo" style={{ height: 48 }} />
+    <Stack component="div" className="footer-container">
+      <Stack component="div" className="main">
+        <Stack component="div" className="left">
+          <Box component="div" className="footer-box">
+            <img src={logoPath} alt="Vorell Logo" className="logo" style={{ height: 48 }} />
           </Box>
-          <Box className="footer-box">
+
+          <Box component="div" className="footer-box">
             <span>Customer Care</span>
-            <p>{String(contactPhone)}</p>
+            <p>{contactPhone}</p>
           </Box>
-          <Box className="footer-box">
+
+          <Box component="div" className="footer-box">
             <span>Live Support</span>
-            <p>{String(contactPhone)}</p>
+            <p>{contactPhone}</p>
             <span>Need Help?</span>
           </Box>
-          <Box className="footer-box">
+
+          <Box component="div" className="footer-box">
             <p>Follow us on social media</p>
             <div className="media-box">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FacebookOutlinedIcon /></a>
@@ -100,15 +109,17 @@ const Footer = () => {
             </div>
           </Box>
         </Stack>
-        <Stack className="right">
-          <Box className="top">
+
+        <Stack component="div" className="right">
+          <Box component="div" className="top">
             <strong>Keep yourself up to date</strong>
             <div>
               <input type="text" placeholder="Your Email" />
               <span>Subscribe</span>
             </div>
           </Box>
-          <Box className="bottom">
+
+          <Box component="div" className="bottom">
             <div>
               <strong>Popular Search</strong>
               <span>Luxury Watches</span>
@@ -133,7 +144,8 @@ const Footer = () => {
           </Box>
         </Stack>
       </Stack>
-      <Stack className="second">
+
+      <Stack component="div" className="second">
         <span>© {brand} – All rights reserved. {brand} {moment().year()}</span>
         <span>Privacy · Terms · Sitemap</span>
       </Stack>

@@ -1,6 +1,6 @@
 import { CommentGroup, CommentStatus } from '../../enums/comment.enum';
-import { MeLiked, TotalCounter } from '../property/property';
 import { Member } from '../member/member';
+import { MeLiked, TotalCounter } from '../watch/watch';
 
 export interface Comment {
 	_id: string;
