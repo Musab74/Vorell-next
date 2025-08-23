@@ -1,33 +1,64 @@
+// libs/components/homepage/AboutStore.tsx
 import React from "react";
 import { Box, Button, Typography, Container } from "@mui/material";
+import type { SxProps, Theme } from "@mui/material/styles";
 import { useRouter } from "next/router";
+
+/* ---- typed styles ---- */
+const rootSx: SxProps<Theme> = { width: "100%", bgcolor: "#000" };
+
+const heroSx: SxProps<Theme> = {
+  position: "relative",
+  width: "100%",
+  minHeight: { xs: "85vh", md: "100vh" },
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  color: "#fff",
+  overflow: "hidden",
+};
+
+const bgSx: SxProps<Theme> = {
+  position: "absolute",
+  inset: 0,
+  zIndex: 0,
+};
+
+const overlaySx: SxProps<Theme> = {
+  position: "absolute",
+  inset: 0,
+  background:
+    "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.6) 100%)",
+  zIndex: 1,
+};
+
+const contentBoxSx: SxProps<Theme> = {
+  textAlign: "center",
+  px: { xs: 2, md: 0 },
+  mt: { xs: 8, md: 0 },
+};
+
+const decoBarSx: SxProps<Theme> = {
+  position: "absolute",
+  right: { xs: 8, md: 32 },
+  top: "50%",
+  transform: "translateY(-50%)",
+  height: { xs: 90, md: 150 },
+  width: 2,
+  bgcolor: "rgba(255,255,255,.5)",
+  borderRadius: 2,
+  zIndex: 2,
+};
 
 const AboutStore = () => {
   const router = useRouter();
 
   return (
-    <Box sx={{ width: "100%", bgcolor: "#000" }}>
+    <Box component="div" sx={rootSx}>
       {/* HERO */}
-      <Box
-        sx={{
-          position: "relative",
-          width: "100%",
-          minHeight: { xs: "85vh", md: "100vh" },
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#fff",
-          overflow: "hidden",
-        }}
-      >
+      <Box component="div" sx={heroSx}>
         {/* Responsive background image */}
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 0,
-          }}
-        >
+        <Box component="div" sx={bgSx}>
           <picture>
             {/* Desktop / Tablet */}
             <source
@@ -67,26 +98,11 @@ const AboutStore = () => {
         </Box>
 
         {/* Soft gradient overlay */}
-        <Box
-          aria-hidden
-          sx={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.6) 100%)",
-            zIndex: 1,
-          }}
-        />
+        <Box component="div" aria-hidden sx={overlaySx} />
 
         {/* Content */}
-        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
-          <Box
-            sx={{
-              textAlign: "center",
-              px: { xs: 2, md: 0 },
-              mt: { xs: 8, md: 0 },
-            }}
-          >
+        <Container component="div" maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+          <Box component="div" sx={contentBoxSx}>
             <Typography
               variant="overline"
               sx={{
@@ -149,20 +165,7 @@ const AboutStore = () => {
         </Container>
 
         {/* Decorative right-side guide */}
-        <Box
-          aria-hidden
-          sx={{
-            position: "absolute",
-            right: { xs: 8, md: 32 },
-            top: "50%",
-            transform: "translateY(-50%)",
-            height: { xs: 90, md: 150 },
-            width: 2,
-            bgcolor: "rgba(255,255,255,.5)",
-            borderRadius: 2,
-            zIndex: 2,
-          }}
-        />
+        <Box component="div" aria-hidden sx={decoBarSx} />
       </Box>
     </Box>
   );
