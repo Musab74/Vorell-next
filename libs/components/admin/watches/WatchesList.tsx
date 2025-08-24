@@ -16,7 +16,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { REACT_APP_API_URL } from '../../../config';
+import { NEXT_APP_API_URL } from '../../../config';
 import { WatchStatus, WatchType } from '../../../enums/watch.enum';
 import { T } from '../../../types/common';
 
@@ -97,7 +97,7 @@ export const WatchPanelList = ({
 
             {watches?.map((w) => {
               const img = w.images?.[0]
-                ? `${REACT_APP_API_URL}/${w.images[0]}`
+                ? `${NEXT_APP_API_URL}/${w.images[0]}`
                 : '/img/product/default.png';
               const statusKey = `${w._id}:status`;
 

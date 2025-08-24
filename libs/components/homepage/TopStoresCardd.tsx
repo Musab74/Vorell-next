@@ -22,7 +22,7 @@ interface TopStoreCardProps {
 const TopStoreCard: React.FC<TopStoreCardProps> = ({ store }) => {
 	const router = useRouter();
 	const storeImage = store?.memberImage
-		? `${process.env.REACT_APP_API_GRAPHQL_URL}/${store.memberImage} !== "" `
+		? `${process.env.NEXT_APP_API_GRAPHQL_URL}/${store.memberImage} !== "" `
 		: '/img/logo/RolexStore.jpeg';
 
 	return (

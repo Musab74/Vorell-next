@@ -23,7 +23,7 @@ const absolutize = (src: string): string => {
   // If src already absolute, return as-is
   if (/^https?:\/\//i.test(src)) return src;
   // If your images are served from API base, keep using your existing env
-  const base = process.env.REACT_APP_API_URL || '';
+  const base = process.env.NEXT_APP_API_URL || '';
   if (!base) return src;
   return `${base.replace(/\/$/, '')}/${src.replace(/^\//, '')}`;
 };
@@ -39,7 +39,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ vertical, article, index 
     const fromContent = getFirstImageFromHtml((article as any)?.articleContent);
     const chosen =
       fromContent ||
-      (article?.articleImage ? `${process.env.REACT_APP_API_URL}/${article.articleImage}` : '') ||
+      (article?.articleImage ? `${process.env.NEXT_APP_API_URL}/${article.articleImage}` : '') ||
       '/img/event.svg';
     return absolutize(chosen);
   }, [article]);

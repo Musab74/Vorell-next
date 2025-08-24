@@ -86,7 +86,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
     onCompleted: (data: T) => {
       setBoardArticle(data?.getBoardArticle);
       if (data?.getBoardArticle?.memberData?.memberImage) {
-        setMemberImage(`${process.env.REACT_APP_API_URL}/${data.getBoardArticle.memberData.memberImage}`);
+        setMemberImage(`${process.env.NEXT_APP_API_URL}/${data.getBoardArticle.memberData.memberImage}`);
       }
     },
   });
@@ -179,7 +179,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
   };
 
   const getCommentMemberImage = (imageUrl: string | undefined) =>
-    imageUrl ? `${process.env.REACT_APP_API_URL}/${imageUrl}` : '/img/community/articleImg.png';
+    imageUrl ? `${process.env.NEXT_APP_API_URL}/${imageUrl}` : '/img/community/articleImg.png';
 
   const goMemberPage = (id: any) => {
     if (id === user?._id) router.push('/mypage');

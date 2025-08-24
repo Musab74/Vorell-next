@@ -14,7 +14,7 @@ const TrendWatches = () => {
   const [showArrows, setShowArrows] = useState(false);
 
   const API_BASE = useMemo(
-    () => (process.env.NEXT_PUBLIC_API_URL || process.env.REACT_APP_API_URL || '').replace(/\/$/, ''),
+    () => (process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_APP_API_URL || '').replace(/\/$/, ''),
     []
   );
 

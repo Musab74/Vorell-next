@@ -16,7 +16,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { getJwtToken, logOut, updateUserInfo } from '../../auth';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
-import { REACT_APP_API_URL } from '../../config';
+import { NEXT_APP_API_URL } from '../../config';
 import { MemberType } from '../../enums/member.enum';
 
 const drawerWidth = 280;
@@ -79,7 +79,7 @@ const withAdminLayout = (Component: ComponentType) => {
                   <Avatar
                     src={
                       user?.memberImage
-                        ? `${REACT_APP_API_URL}/${user?.memberImage}`
+                        ? `${NEXT_APP_API_URL}/${user?.memberImage}`
                         : '/img/profile/defaultUser.svg'
                     }
                   />
@@ -162,7 +162,7 @@ const withAdminLayout = (Component: ComponentType) => {
                 <Avatar
                   src={
                     user?.memberImage
-                      ? `${REACT_APP_API_URL}/${user?.memberImage}`
+                      ? `${NEXT_APP_API_URL}/${user?.memberImage}`
                       : '/img/profile/defaultUser.svg'
                   }
                 />

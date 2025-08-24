@@ -18,7 +18,7 @@ const TopStores = () => {
   const mdUp = useMediaQuery(theme.breakpoints.up('md'));
 
   const API_BASE = useMemo(() => {
-    const base = (process.env.NEXT_PUBLIC_API_URL || process.env.REACT_APP_API_URL || '').trim();
+    const base = (process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_APP_API_URL || '').trim();
     return base.endsWith('/') ? base.slice(0, -1) : base;
   }, []);
 

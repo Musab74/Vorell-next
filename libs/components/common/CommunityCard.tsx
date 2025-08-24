@@ -9,7 +9,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { BoardArticle } from '../../types/board-article/board-article';
-import { REACT_APP_API_URL } from '../../config';
+import { NEXT_APP_API_URL } from '../../config';
 import { T } from '../../types/common';
 
 interface CommunityCardProps {
@@ -25,7 +25,7 @@ const CommunityCard = ({ boardArticle, size = 'normal', likeArticleHandler }: Co
 
   const imagePath =
     boardArticle?.articleImage
-      ? `${REACT_APP_API_URL}/${boardArticle.articleImage}`
+      ? `${NEXT_APP_API_URL}/${boardArticle.articleImage}`
       : '/img/community/communityImg.png';
 
   const chooseArticleHandler = (e: React.SyntheticEvent) => {

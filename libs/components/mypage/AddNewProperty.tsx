@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { REACT_APP_API_URL } from '../../config';
+import { NEXT_APP_API_URL } from '../../config';
 import axios from 'axios';
 import { getJwtToken } from '../../auth';
 import { sweetMixinErrorAlert, sweetMixinSuccessAlert } from '../../sweetAlert';
@@ -133,7 +133,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
         formData.append(String(i), filesToSend[i]);
       }
 
-      const res = await axios.post(`${process.env.REACT_APP_API_GRAPHQL_URL}`, formData, {
+      const res = await axios.post(`${process.env.NEXT_APP_API_GRAPHQL_URL}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'apollo-require-preflight': true,
@@ -422,7 +422,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 
             <Stack className="gallery-box">
               {insertWatchData?.images.map((image: string, idx: number) => {
-                const imagePath: string = `${REACT_APP_API_URL}/${image}`;
+                const imagePath: string = `${NEXT_APP_API_URL}/${image}`;
                 return (
                   <Stack className="image-box" key={`${image}-${idx}`}>
                     <img src={imagePath} alt="" />

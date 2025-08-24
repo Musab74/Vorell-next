@@ -23,7 +23,7 @@ const WatchManageCard = ({
   updateWatchHandler: (status: string, id: string) => void | Promise<void>;
 }) => {
   const thumb = useMemo(() => {
-    const API = process.env.REACT_APP_API_URL || '';
+    const API = process.env.NEXT_APP_API_URL || '';
     return watch?.images?.[0] ? `${API}/${watch.images[0]}` : '/img/watches/placeholder.png';
   }, [watch?.images]);
 

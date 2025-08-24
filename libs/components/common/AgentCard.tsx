@@ -8,7 +8,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { Member } from '../../types/member/member';
-import { REACT_APP_API_URL } from '../../config';
+import { NEXT_APP_API_URL } from '../../config';
 
 const rolexGreen = '#267147';
 
@@ -23,7 +23,7 @@ const toMediaUrl = (p?: string | null): string => {
   if (!p || p.trim() === '') return FALLBACK;
   if (/^https?:\/\//i.test(p)) return p;           // already absolute
   if (p.startsWith('/img/')) return p;             // public asset
-  const base = (REACT_APP_API_URL || '').replace(/\/$/, '');
+  const base = (NEXT_APP_API_URL || '').replace(/\/$/, '');
   const rel = p.replace(/^\//, '');
   return base ? `${base}/${rel}` : `/${rel}`;
 };

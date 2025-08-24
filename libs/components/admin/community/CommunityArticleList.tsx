@@ -20,7 +20,7 @@ import Stack from '@mui/material/Stack';
 import OpenInBrowserRoundedIcon from '@mui/icons-material/OpenInBrowserRounded';
 import Moment from 'react-moment';
 import { BoardArticle } from '../../../types/board-article/board-article';
-import { REACT_APP_API_URL } from '../../../config';
+import { NEXT_APP_API_URL } from '../../../config';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 import { BoardArticleStatus } from '../../../enums/board-article.enum';
@@ -162,7 +162,7 @@ const CommunityArticleList = (props: CommunityArticleListProps) => {
                           alt={article?.memberData?.memberNick || 'author'}
                           src={
                             article?.memberData?.memberImage
-                              ? `${REACT_APP_API_URL}/${article?.memberData?.memberImage}`
+                              ? `${NEXT_APP_API_URL}/${article?.memberData?.memberImage}`
                               : `/img/profile/defaultUser.svg`
                           }
                           sx={{ ml: '2px', mr: '10px' }}

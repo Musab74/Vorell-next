@@ -134,7 +134,7 @@ const CollectionPage: React.FC = () => {
   });
 
   // Use CRA-style env for non-Next setups
-  const apiBase = process.env.REACT_APP_API_URL ?? "";
+  const apiBase = process.env.NEXT_APP_API_URL ?? "";
 
   // Normalize list length to exactly 5
   const stores: StoreCard[] = (data?.getStores?.list as StoreCard[]) ?? [];

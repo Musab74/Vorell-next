@@ -19,7 +19,7 @@ import { CREATE_COMMENT, LIKE_TARGET_WATCH } from '../../apollo/user/mutation';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import moment from 'moment';
 import { formatterStr } from '../../libs/utils';
-import { REACT_APP_API_URL } from '../../libs/config';
+import { NEXT_APP_API_URL } from '../../libs/config';
 import { userVar } from '../../apollo/store';
 import { CommentInput, CommentsInquiry } from '../../libs/types/comment/comment.input';
 import { Comment } from '../../libs/types/comment/comment';
@@ -267,13 +267,13 @@ const WatchDetail: NextPage = ({ initialComment, ...props }: any) => {
             <Stack className="images">
               <Stack className="main-image">
                 <img
-                  src={slideImage ? `${REACT_APP_API_URL}/${slideImage}` : '/img/watch/bigImage.png'}
+                  src={slideImage ? `${NEXT_APP_API_URL}/${slideImage}` : '/img/watch/bigImage.png'}
                   alt="main-image"
                 />
               </Stack>
               <Stack className="sub-images">
                 {watch?.images.map((subImg: string) => {
-                  const imagePath: string = `${REACT_APP_API_URL}/${subImg}`;
+                  const imagePath: string = `${NEXT_APP_API_URL}/${subImg}`;
                   return (
                     <Stack className="sub-img-box" onClick={() => changeImageHandler(subImg)} key={subImg}>
                       <img src={imagePath} alt="sub-image" />
@@ -455,7 +455,7 @@ const WatchDetail: NextPage = ({ initialComment, ...props }: any) => {
                     className="member-image"
                     src={
                       watch?.memberData?.memberImage
-                        ? `${REACT_APP_API_URL}/${watch?.memberData?.memberImage}`
+                        ? `${NEXT_APP_API_URL}/${watch?.memberData?.memberImage}`
                         : '/img/profile/defaultUser.svg'
                     }
                   />

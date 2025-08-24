@@ -15,7 +15,7 @@ import { WatchesInquiry } from '../../libs/types/watch/watch.input';
 import { CommentInput, CommentsInquiry } from '../../libs/types/comment/comment.input';
 import { Comment } from '../../libs/types/comment/comment';
 import { CommentGroup } from '../../libs/enums/comment.enum';
-import { REACT_APP_API_URL } from '../../libs/config';
+import { NEXT_APP_API_URL } from '../../libs/config';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GET_MEMBER, GET_STORE_WATCHES, GET_COMMENTS } from '../../apollo/user/query';
 import { CREATE_COMMENT, LIKE_TARGET_WATCH } from '../../apollo/user/mutation';
@@ -181,7 +181,7 @@ const StoreDetail: NextPage = ({ initialInput, initialComment }: any) => {
       <Stack className="lux-container">
         <Stack className="store-info-lux">
           <img
-            src={store?.memberImage ? `${REACT_APP_API_URL}/${store?.memberImage}` : '/img/profile/defaultUser.svg'}
+            src={store?.memberImage ? `${NEXT_APP_API_URL}/${store?.memberImage}` : '/img/profile/defaultUser.svg'}
             alt=""
             className="store-avatar"
           />

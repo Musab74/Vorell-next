@@ -1,4 +1,4 @@
-export const REACT_APP_API_URL = `${process.env.REACT_APP_API_URL}`;
+export const NEXT_APP_API_URL = `${process.env.NEXT_APP_API_URL}`;
 
 // Available options for watch filters (customize as needed)
 export const availableWatchOptions = ['isLimitedEdition', 'waterResistance'];

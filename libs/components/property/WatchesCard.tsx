@@ -8,7 +8,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { formatterStr } from '../../utils';
-import { REACT_APP_API_URL, topWatchRank } from '../../config';
+import { NEXT_APP_API_URL, topWatchRank } from '../../config';
 import { Watch } from '../../types/watch/watch';
 
 interface WatchCardProps {
@@ -33,7 +33,7 @@ const WatchCard = ({ watch, likeWatchHandler, myFavorites, recentlyVisited }: Wa
 
   // image
   const firstImg = Array.isArray(watch.images) ? watch.images?.[0] : (watch as any)?.image;
-  const initialSrc = firstImg ? `${REACT_APP_API_URL}/${firstImg}` : '/img/banner/header1.svg';
+  const initialSrc = firstImg ? `${NEXT_APP_API_URL}/${firstImg}` : '/img/banner/header1.svg';
   const [imgSrc, setImgSrc] = useState(initialSrc);
 
   // ===== Like UI (frontend-only) =====

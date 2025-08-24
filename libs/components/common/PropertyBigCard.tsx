@@ -5,7 +5,7 @@ import type { SxProps, Theme } from '@mui/material/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Watch } from '../../types/watch/watch';
-import { REACT_APP_API_URL } from '../../config';
+import { NEXT_APP_API_URL } from '../../config';
 import { T } from '../../types/common';
 
 interface PropertyBigCardProps {
@@ -93,7 +93,7 @@ const PropertyBigCard: React.FC<PropertyBigCardProps> = ({ watch, user, likeWatc
   const imageSrc = watch?.images?.[0];
   const mainImage =
     imageSrc && imageSrc.trim() !== ''
-      ? `${REACT_APP_API_URL}/${imageSrc}`
+      ? `${NEXT_APP_API_URL}/${imageSrc}`
       : '/img/logo/RolexStore.jpeg';
 
   const isLiked = Boolean(watch?.meLiked?.[0]?.myFavorite);

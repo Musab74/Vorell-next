@@ -9,7 +9,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { formatterStr } from '../../utils';
-import { REACT_APP_API_URL, topWatchRank } from '../../config';
+import { NEXT_APP_API_URL, topWatchRank } from '../../config';
 import { Watch } from '../../types/watch/watch';
 
 interface WatchCardProps {
@@ -47,7 +47,7 @@ const WatchCard = ({
     [myFavorites, watch.meLiked]
   );
 
-  const API = REACT_APP_API_URL || process.env.REACT_APP_API_URL || '';
+  const API = NEXT_APP_API_URL || process.env.NEXT_APP_API_URL || '';
   const firstImg = Array.isArray(watch.images) && watch.images[0] ? watch.images[0] : '';
   const [imgSrc, setImgSrc] = useState(firstImg ? `${API}/${firstImg}` : '/img/watches/placeholder.png');
 

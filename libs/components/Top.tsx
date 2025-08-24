@@ -25,7 +25,7 @@ import { GET_FAVORITES } from '../../apollo/user/query';
 
 import useDeviceDetect from '../hooks/useDeviceDetect';
 import { getJwtToken, logOut, updateUserInfo } from '../auth';
-import { REACT_APP_API_URL } from '../config';
+import { NEXT_APP_API_URL } from '../config';
 
 const LANGS = [
   { code: 'en', label: 'English', short: 'EN', icon: '/img/flag/langen.png' },
@@ -242,7 +242,7 @@ const Top: React.FC = () => {
               <FavoriteNavItem />
               <IconButton onClick={openProfile} size="small">
                 <img
-                  src={user?.memberImage ? `${REACT_APP_API_URL}/${user.memberImage}` : '/img/profile/defaultUser.svg'}
+                  src={user?.memberImage ? `${NEXT_APP_API_URL}/${user.memberImage}` : '/img/profile/defaultUser.svg'}
                   alt="me"
                   style={{ width: 28, height: 28, borderRadius: '50%' }}
                 />
@@ -313,7 +313,7 @@ const Top: React.FC = () => {
 
               <IconButton className="avatar-btn" onClick={openProfile} sx={{ p: 0 }}>
                 <img
-                  src={user?.memberImage ? `${REACT_APP_API_URL}/${user.memberImage}` : '/img/profile/defaultUser.svg'}
+                  src={user?.memberImage ? `${NEXT_APP_API_URL}/${user.memberImage}` : '/img/profile/defaultUser.svg'}
                   alt="me"
                   style={{ width: 34, height: 34, borderRadius: '50%' }}
                 />
