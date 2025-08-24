@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -50,7 +51,7 @@ const TopStores = () => {
   const watches: Watch[] = data?.getWatches?.list ?? [];
   if (!watches.length) return null;
 
-  const slideHeight = mdUp ? '70vh' : '420px';
+  const slideHeight = mdUp ? '85vh' : '530px';
   const slidePl = mdUp ? '8vw' : '16px';
   const titleSize = mdUp ? 44 : 30;
   const descSize = mdUp ? 22 : 16;
@@ -58,7 +59,10 @@ const TopStores = () => {
   // MOBILE
   if (device === 'mobile') {
     return (
-      <Stack id="limited-section" sx={{ width: '100%', minHeight: 400, background: '#000', scrollMarginTop: '68px' }}>
+      <Stack
+        id="limited-section"
+        sx={{ width: '100%', minHeight: 400, background: '#000', scrollMarginTop: '68px' }}
+      >
         <Swiper
           slidesPerView={1}
           centeredSlides
@@ -73,11 +77,36 @@ const TopStores = () => {
 
             return (
               <SwiperSlide key={watch._id}>
-                <div style={{ position: 'relative', width: '100%', minHeight: 400, background: '#000', overflow: 'hidden' }}>
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    minHeight: 400,
+                    background: '#000',
+                    overflow: 'hidden',
+                  }}
+                >
                   <img
                     src={hero}
                     alt={watch.modelName}
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                  {/* Subtle bottom gradient for text legibility */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background:
+                        'linear-gradient(to top, rgba(0,0,0,.55) 15%, rgba(0,0,0,0) 45%)',
+                    }}
                   />
                   <div
                     style={{
@@ -96,19 +125,29 @@ const TopStores = () => {
                     <Typography variant="h5" fontWeight={800} style={{ fontSize: 24, color: '#fff' }}>
                       {watch.modelName}
                     </Typography>
-                    <Typography style={{ fontSize: 15, color: '#f1f1f1' }}>{watch.description}</Typography>
-                    <a
-                      href="/watches"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                      }}
+                    <Typography style={{ fontSize: 15, color: '#f1f1f1' }}>
+                      {watch.description}
+                    </Typography>
+
+                    <Link
+                      href={`/watches/${watch._id}`}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      aria-label={`Discover more about ${watch.modelName}`}
                     >
-                      <div style={{ marginTop: 8, fontWeight: 600, fontSize: 14 }}>
-                        Discover more{" "}
-                        <span style={{ fontSize: 18, marginLeft: 4 }}>→</span>
+                      <div
+                        style={{
+                          marginTop: 8,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 4,
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Discover more <span style={{ fontSize: 18, marginLeft: 2 }}>→</span>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </SwiperSlide>
@@ -125,9 +164,9 @@ const TopStores = () => {
       id="limited-section"
       sx={{
         width: '100%',
-        height: mdUp ? '70vh' : 420,
+        height: '85vh', // force 85vh on desktop
         minHeight: 420,
-        maxHeight: 780,
+        maxHeight: 900,
         position: 'relative',
         overflow: 'hidden',
         scrollMarginTop: '68px',
@@ -192,11 +231,38 @@ const TopStores = () => {
 
           return (
             <SwiperSlide key={watch._id}>
-              <div style={{ position: 'relative', width: '100%', height: slideHeight as any, minHeight: 420, maxHeight: 780, overflow: 'hidden', background: '#000' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: slideHeight as any,
+                  minHeight: 420,
+                  maxHeight: 900,
+                  overflow: 'hidden',
+                  background: '#000',
+                }}
+              >
                 <img
                   src={hero}
                   alt={watch.modelName}
-                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    pointerEvents: 'none',
+                  }}
+                />
+                {/* Soft left-to-right gradient to lift text */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background:
+                      'linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.20) 35%, rgba(0,0,0,0) 60%)',
+                  }}
                 />
                 <div
                   style={{
@@ -211,16 +277,41 @@ const TopStores = () => {
                     textShadow: '0 2px 14px rgba(0,0,0,.35)',
                   }}
                 >
-                  <div style={{ maxWidth: mdUp ? 500 : 350 }}>
-                    <Typography style={{ fontSize: titleSize, fontWeight: 800, lineHeight: 1.08, fontFamily: 'Playfair Display, serif', color: '#fff' }}>
+                  <div style={{ maxWidth: mdUp ? 520 : 360 }}>
+                    <Typography
+                      style={{
+                        fontSize: titleSize,
+                        fontWeight: 800,
+                        lineHeight: 1.08,
+                        fontFamily: 'Playfair Display, serif',
+                        color: '#fff',
+                      }}
+                    >
                       {watch.modelName}
                     </Typography>
                     <Typography style={{ marginTop: 12, fontSize: descSize, color: '#f1f1f1' }}>
                       {watch.description}
                     </Typography>
-                    <div style={{ marginTop: 16, fontSize: 17, fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>
-                      Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
-                    </div>
+
+                    <Link
+                      href={`/watches/${watch._id}`}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      aria-label={`Discover more about ${watch.modelName}`}
+                    >
+                      <div
+                        style={{
+                          marginTop: 16,
+                          fontSize: 17,
+                          fontWeight: 600,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 6,
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Discover more <span style={{ fontSize: 19, marginLeft: 2 }}>→</span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
