@@ -12,7 +12,7 @@ const Footer = () => {
 
   const contactPhone = '+82 10 4867 2909';
   const brand = 'Vorell';
-  const logoPath = '/img/logo/Vorell-gold.png';
+  const logoPath = '/img/logo/vorell-gold.png';
 
   if (device === 'mobile') {
     return (

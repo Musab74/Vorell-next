@@ -7,6 +7,7 @@ import type { SxProps, Theme } from '@mui/material/styles';
 const videoSources = [
   'https://media.rolex.com/video/upload/c_limit,w_2880/f_auto:video/q_auto:eco/v1/rolexcom/new-watches/2025/hub/videos/autoplay/cover/rolex-watches-new-watches-2025-cover-autoplay',
   'https://www.omegawatches.co.kr/media/wysiwyg/video/diver300m-desktop.mp4',
+  "https://youtu.be/mg6Gf7v455c?si=4zaOC6iOz6tAzA3J",
 ];
 
 const headerMainSx: SxProps<Theme> = {

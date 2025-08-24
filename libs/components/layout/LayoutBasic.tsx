@@ -1,19 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import useDeviceDetect from '../../hooks/useDeviceDetect';
 import Head from 'next/head';
+import { Stack } from '@mui/material';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import Top from '../Top';
 import Footer from '../Footer';
-import { Stack, Box } from '@mui/material';
-import { getJwtToken, updateUserInfo } from '../../auth';
 import Chat from '../Chat';
+import { getJwtToken, updateUserInfo } from '../../auth';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { useTranslation } from 'next-i18next';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 type HeaderMedia = {
   title: string;
@@ -26,13 +23,14 @@ type HeaderMedia = {
   authHeader?: boolean;
 };
 
-const withLayoutBasic = (Component: any) => {
+const withLayoutBasic = (Component: React.ComponentType<any>) => {
   return (props: any) => {
     const router = useRouter();
     const { t } = useTranslation('common');
     const device = useDeviceDetect();
-    const [authHeader, setAuthHeader] = useState<boolean>(false);
-    const user = useReactiveVar(userVar);
+
+    // keep the reactive var subscribed (ok if unused elsewhere)
+    useReactiveVar(userVar);
 
     /** LIFECYCLES **/
     useEffect(() => {
@@ -40,23 +38,26 @@ const withLayoutBasic = (Component: any) => {
       if (jwt) updateUserInfo(jwt);
     }, []);
 
-    /** ROUTE → HEADER MEDIA MAP
-     *  - AP video for watches-related pages
-     *  - Patek video for community-related pages
-     *  - MyPage keeps an image banner
-     *  - Auth (login/signup) uses compact header
-     */
+    /** ROUTE → HEADER MEDIA MAP (media only) */
     const header = useMemo<HeaderMedia>(() => {
       const path = router.pathname;
 
-      // Common assets
+      // Direct-playable MP4s
       const AP_VIDEO =
         'https://dynamicmedia.audemarspiguet.com/is/content/audemarspiguet/music_header_RR_1?dpr=off';
       const PATEK_VIDEO =
         'https://patek-res.cloudinary.com/video/upload/f_auto:video/dfsmedia/0906caea301d42b3b8bd23bd656d1711/303765-source/pp-4946r-001-loop-960x1080';
-      const WATCHES_POSTER = '/img/banner/watchesPage.png';
+      const OMEGA_DIVER =
+        'https://www.omegawatches.co.kr/media/wysiwyg/video/diver300m-desktop.mp4';
+      const F1_VIDEO ="https://youtu.be/viQC-6xoJ3E?si=XlpMRi87qJi7EsgW";
+      const ROLEX_VIDEO_2 ="https://youtu.be/wrb-eTadsdI?si=FUWVje3EmaXJPHPI";
 
-      // Watches pages (handle several possible paths you might use)
+      // Posters / images
+      const WATCHES_POSTER = '/img/banner/watchesPage.png';
+      const ROLEX_POSTER = '/img/banner/rolexHeader.jpeg';
+      const MYPAGE_POSTER = '/img/banner/mypageHeader.jpeg';
+
+      // Watches & Store pages → Patek video
       if (
         path === '/watches' ||
         path.startsWith('/watch') ||
@@ -66,12 +67,12 @@ const withLayoutBasic = (Component: any) => {
         return {
           title: 'Watches',
           desc: 'Curated luxury timepieces',
-          videoSrc: PATEK_VIDEO,
+          videoSrc: F1_VIDEO,
           poster: WATCHES_POSTER,
         };
       }
 
-      // Community pages
+      // Community → AP video
       if (path === '/community' || path.startsWith('/community')) {
         return {
           title: 'Community',
@@ -81,22 +82,23 @@ const withLayoutBasic = (Component: any) => {
         };
       }
 
-      // My Page
+      // My Page → static image header
       if (path === '/mypage') {
         return {
           title: 'My Page',
           desc: 'Your profile & updates',
-          bgImage: WATCHES_POSTER,
+          videoSrc: ROLEX_VIDEO_2,
+          bgImage: MYPAGE_POSTER || WATCHES_POSTER,
         };
       }
 
-      // Account join / login
+      // Account join / login → Omega Diver video (full-bleed)
       if (path === '/account/join') {
-        setAuthHeader(true);
         return {
           title: 'Login/Signup',
           desc: 'Authentication Process',
-          bgImage: '/img/banner/header2.svg',
+          videoSrc: OMEGA_DIVER,
+          poster: '/img/banner/joinBg.svg',
           authHeader: true,
         };
       }
@@ -115,22 +117,16 @@ const withLayoutBasic = (Component: any) => {
         return {
           title: 'CS',
           desc: 'We are glad to see you again!',
-          bgImage: '/img/banner/header2.svg',
+          bgImage: ROLEX_POSTER,
         };
       }
 
       // Default fallback
-      return {
-        title: '',
-        desc: '',
-        bgImage: '/img/banner/header2.svg',
-      };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      return { title: '', desc: '', bgImage: ROLEX_POSTER };
     }, [router.pathname]);
 
     /** RENDER **/
     if (device === 'mobile') {
-      // Mobile layout (you didn’t show a header banner for mobile previously, keeping that)
       return (
         <>
           <Head>
@@ -168,11 +164,10 @@ const withLayoutBasic = (Component: any) => {
           </Stack>
 
           <Stack
-            className={`header-basic ${authHeader || header.authHeader ? 'auth' : ''}`}
+            className={`header-basic ${header.authHeader ? 'auth' : ''}`}
             sx={{
               position: 'relative',
               overflow: 'hidden',
-              // When we have a bg image (no video), keep your background image approach:
               ...(header.videoSrc
                 ? {}
                 : {
@@ -180,46 +175,52 @@ const withLayoutBasic = (Component: any) => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }),
-              // soft dark overlay via inset shadow to match your original vibe
               boxShadow: 'inset 10px 40px 150px 40px rgb(24 22 36 / 85%)',
             }}
           >
             {/* Video background (if provided) */}
             {header.videoSrc && (
-              <Box
-                sx={{
+              <div
+                className="diver-video-bg"
+                style={{
                   position: 'absolute',
-                  inset: 0,
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
                   zIndex: 0,
                   pointerEvents: 'none',
                 }}
               >
                 <video
-                  key={header.videoSrc} 
+                  key={header.videoSrc}
                   src={header.videoSrc}
                   autoPlay
                   muted
                   loop
                   playsInline
                   preload="metadata"
-                  poster={header.poster || '/img/banner/header2.svg'}
+                  poster={header.poster || '/img/banner/rolexHeader.jpeg'}
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover',
+                    objectFit: 'cover', // full-bleed with minimal zoom
                     display: 'block',
                   }}
                 />
                 {/* subtle overlay for legibility */}
-                <Box
-                  sx={{
+                <div
+                  style={{
                     position: 'absolute',
-                    inset: 0,
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
                     background:
                       'linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.65) 100%)',
                   }}
                 />
-              </Box>
+              </div>
             )}
 
             {/* Foreground content */}

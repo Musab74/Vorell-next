@@ -1,4 +1,3 @@
-// libs/components/common/AgentCard.tsx
 import React from 'react';
 import { Box, Stack, Typography, Button, IconButton } from '@mui/material';
 import Link from 'next/link';
