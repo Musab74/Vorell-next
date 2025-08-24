@@ -224,10 +224,10 @@ const WatchDetail: NextPage = ({ initialComment, ...props }: any) => {
                     <img src="/img/icons/movement.png" alt="" /> <Typography>{watch?.movement}</Typography>
                   </Stack>
                   <Stack className="option">
-                    <img src="/img/icons/case.svg" alt="" /> <Typography>{watch?.watchType}</Typography>
+                    <img src="/img/icons/type.png" alt="" /> <Typography>{watch?.watchType}</Typography>
                   </Stack>
                   <Stack className="option">
-                    <img src="/img/icons/size.svg" alt="" /> <Typography>{watch?.caseDiameter} mm</Typography>
+                    <img src="/img/icons/size.png" alt="" /> <Typography>{watch?.caseDiameter} mm</Typography>
                   </Stack>
                 </Stack>
               </Stack>
@@ -299,7 +299,7 @@ const WatchDetail: NextPage = ({ initialComment, ...props }: any) => {
 
                 <Stack className="option">
                   <Stack className="svg-box">
-                    <img src="/img/icons/case.svg" alt="type" />
+                    <img src="/img/icons/type.png" alt="type" />
                   </Stack>
                   <Stack className="option-includes">
                     <Typography className="title">Type</Typography>
@@ -309,7 +309,7 @@ const WatchDetail: NextPage = ({ initialComment, ...props }: any) => {
 
                 <Stack className="option">
                   <Stack className="svg-box">
-                    <img src="/img/icons/case.svg" alt="origin" />
+                    <img src="/img/icons/origin.png" alt="origin" />
                   </Stack>
                   <Stack className="option-includes">
                     <Typography className="title">Origin</Typography>
@@ -319,7 +319,7 @@ const WatchDetail: NextPage = ({ initialComment, ...props }: any) => {
 
                 <Stack className="option">
                   <Stack className="svg-box">
-                    <img src="/img/icons/size.svg" alt="size" />
+                    <img src="/img/icons/size.png" alt="size" />
                   </Stack>
                   <Stack className="option-includes">
                     <Typography className="title">Size</Typography>
