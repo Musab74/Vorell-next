@@ -1,3 +1,4 @@
+// libs/components/common/AgentCard.tsx
 import React from 'react';
 import { Box, Stack, Typography, Button, IconButton } from '@mui/material';
 import Link from 'next/link';
@@ -7,38 +8,52 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { Member } from '../../types/member/member';
+import { REACT_APP_API_URL } from '../../config';
 
 const rolexGreen = '#267147';
 
 interface AgentCardProps {
-  store: Member;              
+  store: Member;
   likeMemberHandler: (user: any, id: string) => void | Promise<void>;
 }
 
-const AgentCard = ({ store, likeMemberHandler }: AgentCardProps) => {
+/** Normalize possibly-relative path to a full URL, with a safe fallback. */
+const toMediaUrl = (p?: string | null): string => {
+  const FALLBACK = '/img/profile/defaultUser.svg';
+  if (!p || p.trim() === '') return FALLBACK;
+  if (/^https?:\/\//i.test(p)) return p;           // already absolute
+  if (p.startsWith('/img/')) return p;             // public asset
+  const base = (REACT_APP_API_URL || '').replace(/\/$/, '');
+  const rel = p.replace(/^\//, '');
+  return base ? `${base}/${rel}` : `/${rel}`;
+};
+
+const AgentCard: React.FC<AgentCardProps> = ({ store, likeMemberHandler }) => {
   const user = useReactiveVar(userVar);
 
-  // Pick main image or fallback
-  const imagePath =
-    Array.isArray(store?.memberImage)
-      ? (store.memberImage[0] && store.memberImage[0] !== ''
-          ? store.memberImage[0]
-          : '/img/logo/defaultBack.jpeg')
-      : (store?.memberImage && store.memberImage !== ''
-          ? store.memberImage
-          : '/img/logo/defaultBack.jpeg');
+  // memberImage can be string | string[] | undefined
+  const rawImgField = (store as any)?.memberImage;
+  const rawImage: string | undefined = Array.isArray(rawImgField)
+    ? (rawImgField.find((v: any) => typeof v === 'string' && v.trim() !== '') as string | undefined)
+    : typeof rawImgField === 'string'
+    ? rawImgField
+    : undefined;
 
-  // Watches count as number
+  const imagePath = toMediaUrl(rawImage);
+
+  // storeWatches can be number | string | any[]
+  const sw: unknown = (store as any)?.storeWatches;
   let watchesCount = 0;
-  if (typeof store?.storeWatches === 'number') {
-    watchesCount = store.storeWatches;
-  } else if (typeof store?.storeWatches === 'string') {
-    watchesCount = Number(store.storeWatches) || 0;
-  } else if (Array.isArray(store?.storeWatches)) {
-    watchesCount = (store.storeWatches as any[]).length;
+  if (typeof sw === 'number') {
+    watchesCount = sw;
+  } else if (typeof sw === 'string') {
+    const n = Number(sw);
+    watchesCount = Number.isFinite(n) ? n : 0;
+  } else if (Array.isArray(sw)) {
+    watchesCount = (sw as any[]).length;
   }
 
-  // Date string (use createdAt or updatedAt if available, else today)
+  // Date label
   const dateStr = store?.createdAt
     ? new Date(store.createdAt).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
     : new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
@@ -49,9 +64,14 @@ const AgentCard = ({ store, likeMemberHandler }: AgentCardProps) => {
       <Box component="div" className="topstore-imgbox">
         <img
           src={imagePath}
-          alt={store?.memberNick}
+          alt={store?.memberNick || store?.memberFullName || 'Store'}
           className="topstore-img"
           loading="lazy"
+          onError={(e: any) => {
+            if (e?.currentTarget?.src !== '/img/profile/defaultUser.svg') {
+              e.currentTarget.src = '/img/profile/defaultUser.svg';
+            }
+          }}
         />
         <span className="topstore-imgname">{store?.memberFullName ?? store?.memberNick}</span>
       </Box>
@@ -103,8 +123,9 @@ const AgentCard = ({ store, likeMemberHandler }: AgentCardProps) => {
             <IconButton
               sx={{ color: rolexGreen, p: '2px' }}
               onClick={() => likeMemberHandler(user, store?._id)}
+              aria-label={store?.meLiked?.[0]?.myFavorite ? 'Unlike store' : 'Like store'}
             >
-              {store?.meLiked && store?.meLiked[0]?.myFavorite ? (
+              {store?.meLiked?.[0]?.myFavorite ? (
                 <FavoriteIcon sx={{ color: rolexGreen }} />
               ) : (
                 <FavoriteBorderIcon sx={{ color: rolexGreen }} />

@@ -1,4 +1,3 @@
-// libs/components/Top.tsx
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -165,7 +164,7 @@ const Top: React.FC = () => {
 
   const goToFavorites = () => {
     if (!user?._id) router.push('/account/join');
-    else router.push('/mypage?category=myfavorite');
+    else router.push("/mypage?category=myFavorites");
   };
 
   /** Favorite Nav Item **/
