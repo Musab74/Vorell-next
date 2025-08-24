@@ -140,17 +140,12 @@ const StoreDetail: NextPage = ({ initialInput, initialComment }: any) => {
     setCommentInquiry({ ...commentInquiry, page: value });
   };
 
-  
   const likeWatchHandler = async (me: any, id: string) => {
     try {
       if (!id) return;
       if (!me?._id) throw new Error(Message.NOT_AUTHENTICATED);
-
-     
-	  await likeTargetWatch({ variables: { watchId: id } });
-
-
-	  await getWatchesRefetch({ input: searchFilter });
+      await likeTargetWatch({ variables: { watchId: id } });
+      await getWatchesRefetch({ variables: { input: searchFilter } });
       await sweetTopSmallSuccessAlert('Success', 700);
     } catch (err: any) {
       await sweetMixinErrorAlert(err.message);
@@ -161,13 +156,16 @@ const StoreDetail: NextPage = ({ initialInput, initialComment }: any) => {
     try {
       if (!user?._id) throw new Error(Message.NOT_AUTHENTICATED);
       if (user._id === memberId) throw new Error('Cannot write a review to yourself');
+      if (!insertCommentData.commentContent.trim()) return;
 
       await createComment({ variables: { input: insertCommentData } });
 
+      // Clear field
       setInsertCommentData((prev) => ({ ...prev, commentContent: '' }));
 
-      // Fix: include variables wrapper on refetch
+      // Refresh comments
       await getCommentsRefetch({ variables: { input: commentInquiry } });
+      await sweetTopSmallSuccessAlert('Success', 700);
     } catch (err: any) {
       await sweetMixinErrorAlert(err.message);
     }
@@ -187,7 +185,14 @@ const StoreDetail: NextPage = ({ initialInput, initialComment }: any) => {
             alt=""
             className="store-avatar"
           />
-          <Box className="info-lux" onClick={() => redirectToStorePageHandler(store?._id as string)}>
+          {/* use div to avoid MUI sx union blow-up */}
+          <div
+            className="info-lux"
+            onClick={() => {
+              if (store?._id) redirectToStorePageHandler(store._id);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
             <strong>{store?.memberFullName ?? store?.memberNick}</strong>
             <Link
               href={{ pathname: '/member', query: { memberId: store?._id } }}
@@ -197,7 +202,7 @@ const StoreDetail: NextPage = ({ initialInput, initialComment }: any) => {
               <img src="/img/icons/call.svg" alt="call" />
               <span>{store?.memberPhone}</span>
             </Link>
-          </Box>
+          </div>
         </Stack>
 
         <Stack className="store-watches-list-lux">
@@ -242,18 +247,18 @@ const StoreDetail: NextPage = ({ initialInput, initialComment }: any) => {
 
           {commentTotal !== 0 && (
             <Stack className="review-wrap-lux">
-              <Box className="title-box-lux">
+              <div className="title-box-lux">
                 <StarIcon />
                 <span>
                   {commentTotal} review{commentTotal > 1 ? 's' : ''}
                 </span>
-              </Box>
+              </div>
 
               {storeComments?.map((comment: Comment) => (
                 <ReviewCard comment={comment} key={comment?._id} />
               ))}
 
-              <Box className="pagination-box-lux">
+              <div className="pagination-box-lux">
                 <Pagination
                   page={commentInquiry.page}
                   count={Math.ceil(commentTotal / commentInquiry.limit) || 1}
@@ -261,7 +266,8 @@ const StoreDetail: NextPage = ({ initialInput, initialComment }: any) => {
                   shape="circular"
                   color="primary"
                 />
-              </Box>
+              </div>
+
             </Stack>
           )}
 
