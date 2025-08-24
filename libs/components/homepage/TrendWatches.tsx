@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import Link from 'next/link';
-import { Stack, Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
 import WestIcon from '@mui/icons-material/West';
@@ -38,13 +36,7 @@ const TopStores = () => {
   const { data } = useQuery(GET_WATCHES, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      input: {
-        page: 1,
-        limit: 4,
-        sort: 'watchRank',
-        direction: Direction.DESC,
-        search: { isLimitedEdition: true },
-      },
+      input: { page: 1, limit: 4, sort: 'watchRank', direction: 'DESC', search: {} },
     },
   });
 
@@ -59,13 +51,13 @@ const TopStores = () => {
   // MOBILE
   if (device === 'mobile') {
     return (
-      <Stack id="limited-section" sx={{ width: '100%', minHeight: 400, background: '#000', scrollMarginTop: '68px' }}>
+      <Stack id="trend-watches-section" sx={{ width: '100%', minHeight: 400, background: '#000', scrollMarginTop: '68px' }}>
         <Swiper
           slidesPerView={1}
           centeredSlides
           modules={[Autoplay]}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
-          style={{ width: '100%', minHeight: 400 }}
+          style={{ width: '100%', height: '85vh' }}
         >
           {watches.map((watch) => {
             const hero = toImageUrl(
@@ -74,11 +66,19 @@ const TopStores = () => {
 
             return (
               <SwiperSlide key={watch._id}>
-                <div style={{ position: 'relative', width: '100%', minHeight: 400, background: '#000', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', width: '100%', minHeight: 400, overflow: 'hidden', background: '#000' }}>
                   <img
                     src={hero}
                     alt={watch.modelName}
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      pointerEvents: 'none',
+                    }}
                   />
                   <div
                     style={{
@@ -105,16 +105,21 @@ const TopStores = () => {
                       {watch.modelName}
                     </Typography>
                     <Typography style={{ fontSize: 15, color: '#f1f1f1' }}>{watch.description}</Typography>
-
-                    <Link
-                      href={`/watches/${watch._id}`}
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                      aria-label={`Discover more about ${watch.modelName}`}
+                    <a
+                      href="/watches"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        display: "inline-block",
+                        marginTop: 8,
+                        fontWeight: 600,
+                        fontSize: 14,
+                      }}
                     >
-                      <div style={{ marginTop: 8, fontWeight: 600, fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 4, cursor: 'pointer' }}>
-                        Discover more <span style={{ fontSize: 18, marginLeft: 2 }}>→</span>
-                      </div>
-                    </Link>
+                      Discover more{" "}
+                      <span style={{ fontSize: 18, marginLeft: 4 }}>→</span>
+                    </a>
+
                   </div>
                 </div>
               </SwiperSlide>
@@ -198,21 +203,19 @@ const TopStores = () => {
 
           return (
             <SwiperSlide key={watch._id}>
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: slideHeight as any,
-                  minHeight: 420,
-                  maxHeight: 900,
-                  overflow: 'hidden',
-                  background: '#000',
-                }}
-              >
+              <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: '#000' }}>
                 <img
                   src={hero}
                   alt={watch.modelName}
-                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    pointerEvents: 'none',
+                  }}
                 />
                 <div
                   style={{
@@ -234,41 +237,16 @@ const TopStores = () => {
                     textShadow: '0 2px 14px rgba(0,0,0,.35)',
                   }}
                 >
-                  <div style={{ maxWidth: mdUp ? 520 : 360 }}>
-                    <Typography
-                      style={{
-                        fontSize: titleSize,
-                        fontWeight: 800,
-                        lineHeight: 1.08,
-                        fontFamily: 'Playfair Display, serif',
-                        color: '#fff',
-                      }}
-                    >
+                  <div style={{ maxWidth: 520 }}>
+                    <Typography style={{ fontSize: 44, fontWeight: 800, lineHeight: 1.08, fontFamily: 'Playfair Display, serif', color: '#fff' }}>
                       {watch.modelName}
                     </Typography>
                     <Typography style={{ marginTop: 12, fontSize: descSize, color: '#f1f1f1' }}>
                       {watch.description}
                     </Typography>
-
-                    <Link
-                      href={`/watches/${watch._id}`}
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                      aria-label={`Discover more about ${watch.modelName}`}
-                    >
-                      <div
-                        style={{
-                          marginTop: 16,
-                          fontSize: 17,
-                          fontWeight: 600,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 6,
-                          cursor: 'pointer',
-                        }}
-                      >
-                        Discover more <span style={{ fontSize: 19, marginLeft: 2 }}>→</span>
-                      </div>
-                    </Link>
+                    <div style={{ marginTop: 16, fontSize: 17, fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>
+                      Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
+                    </div>
                   </div>
                 </div>
               </div>
