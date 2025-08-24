@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { Stack, Typography } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
@@ -18,8 +19,13 @@ const TrendWatches = () => {
     []
   );
 
-  const toImageUrl = (p?: string): string => {
-    if (!p || p.trim() === '') return '/img/logo/defaultBack.jpeg';
+  const toImageUrl = (raw?: unknown): string => {
+    const candidate =
+      (typeof raw === 'string' && raw) ||
+      (raw && typeof (raw as any).url === 'string' && (raw as any).url) ||
+      '';
+    if (!candidate) return '/img/logo/defaultBack.jpeg';
+    const p = candidate.replace(/\\/g, '/').trim();
     if (/^https?:\/\//i.test(p)) return p;
     const path = p.startsWith('/') ? p : `/${p}`;
     return `${API_BASE}${path}`;
@@ -27,9 +33,7 @@ const TrendWatches = () => {
 
   const { data } = useQuery(GET_WATCHES, {
     fetchPolicy: 'cache-and-network',
-    variables: {
-      input: { page: 1, limit: 4, sort: 'watchRank', direction: 'DESC', search: {} },
-    },
+    variables: { input: { page: 1, limit: 4, sort: 'watchRank', direction: 'DESC', search: {} } },
   });
 
   const watches: Watch[] = data?.getWatches?.list ?? [];
@@ -38,13 +42,16 @@ const TrendWatches = () => {
   // ===== MOBILE =====
   if (device === 'mobile') {
     return (
-      <Stack id="trend-watches-section" sx={{ width: '100%', minHeight: 400, background: '#000', scrollMarginTop: '68px' }}>
+      <Stack
+        id="trend-watches-section"
+        sx={{ width: '100%', background: '#000', scrollMarginTop: '68px' }}
+      >
         <Swiper
           slidesPerView={1}
           centeredSlides
           modules={[Autoplay]}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
-          style={{ width: '100%', minHeight: 400 }}
+          style={{ width: '100%', height: '85vh' }}
         >
           {watches.map((watch) => {
             const hero = toImageUrl(
@@ -53,11 +60,27 @@ const TrendWatches = () => {
 
             return (
               <SwiperSlide key={watch._id}>
-                <div style={{ position: 'relative', width: '100%', minHeight: 400, overflow: 'hidden', background: '#000' }}>
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '85vh',
+                    overflow: 'hidden',
+                    background: '#000',
+                  }}
+                >
                   <img
                     src={hero}
                     alt={watch.modelName}
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      pointerEvents: 'none',
+                    }}
                   />
                   <div
                     style={{
@@ -77,21 +100,16 @@ const TrendWatches = () => {
                       {watch.modelName}
                     </Typography>
                     <Typography style={{ fontSize: 15, color: '#f1f1f1' }}>{watch.description}</Typography>
-                    <a
-                      href="/watches"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        display: "inline-block",
-                        marginTop: 8,
-                        fontWeight: 600,
-                        fontSize: 14,
-                      }}
-                    >
-                      Discover more{" "}
-                      <span style={{ fontSize: 18, marginLeft: 4 }}>→</span>
-                    </a>
 
+                    <Link
+                      href={{ pathname: '/watches/detail', query: { id: watch._id } }}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      aria-label={`Discover more about ${watch.modelName}`}
+                    >
+                      <div style={{ marginTop: 8, fontWeight: 600, fontSize: 14 }}>
+                        Discover more <span style={{ fontSize: 18, marginLeft: 4 }}>→</span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </SwiperSlide>
@@ -108,7 +126,7 @@ const TrendWatches = () => {
       id="trend-watches-section"
       sx={{
         width: '100%',
-        height: '70vh',
+        height: '85vh',
         minHeight: 420,
         maxHeight: 780,
         position: 'relative',
@@ -122,18 +140,40 @@ const TrendWatches = () => {
       <WestIcon
         className="swiper-trend-prev"
         sx={{
-          position: 'absolute', top: '50%', left: 36, zIndex: 10, width: 46, height: 46, p: 1.2,
-          background: '#fff', borderRadius: '50%', boxShadow: '0 4px 20px 0 #00000020', cursor: 'pointer',
-          transform: 'translateY(-50%)', opacity: showArrows ? 1 : 0, transition: 'opacity 0.3s',
+          position: 'absolute',
+          top: '50%',
+          left: 36,
+          zIndex: 10,
+          width: 46,
+          height: 46,
+          p: 1.2,
+          background: '#fff',
+          borderRadius: '50%',
+          boxShadow: '0 4px 20px 0 #00000020',
+          cursor: 'pointer',
+          transform: 'translateY(-50%)',
+          opacity: showArrows ? 1 : 0,
+          transition: 'opacity 0.3s',
           display: { xs: 'none', md: 'block' },
         }}
       />
       <EastIcon
         className="swiper-trend-next"
         sx={{
-          position: 'absolute', top: '50%', right: 36, zIndex: 10, width: 46, height: 46, p: 1.2,
-          background: '#fff', borderRadius: '50%', boxShadow: '0 4px 20px 0 #00000020', cursor: 'pointer',
-          transform: 'translateY(-50%)', opacity: showArrows ? 1 : 0, transition: 'opacity 0.3s',
+          position: 'absolute',
+          top: '50%',
+          right: 36,
+          zIndex: 10,
+          width: 46,
+          height: 46,
+          p: 1.2,
+          background: '#fff',
+          borderRadius: '50%',
+          boxShadow: '0 4px 20px 0 #00000020',
+          cursor: 'pointer',
+          transform: 'translateY(-50%)',
+          opacity: showArrows ? 1 : 0,
+          transition: 'opacity 0.3s',
           display: { xs: 'none', md: 'block' },
         }}
       />
@@ -153,11 +193,27 @@ const TrendWatches = () => {
 
           return (
             <SwiperSlide key={watch._id}>
-              <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: '#000' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'hidden',
+                  background: '#000',
+                }}
+              >
                 <img
                   src={hero}
                   alt={watch.modelName}
-                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    pointerEvents: 'none',
+                  }}
                 />
                 <div
                   style={{
@@ -173,15 +229,30 @@ const TrendWatches = () => {
                   }}
                 >
                   <div style={{ maxWidth: 520 }}>
-                    <Typography style={{ fontSize: 44, fontWeight: 800, lineHeight: 1.08, fontFamily: 'Playfair Display, serif', color: '#fff' }}>
+                    <Typography
+                      style={{
+                        fontSize: 44,
+                        fontWeight: 800,
+                        lineHeight: 1.08,
+                        fontFamily: 'Playfair Display, serif',
+                        color: '#fff',
+                      }}
+                    >
                       {watch.modelName}
                     </Typography>
                     <Typography style={{ marginTop: 12, fontSize: 20, color: '#f1f1f1' }}>
                       {watch.description}
                     </Typography>
-                    <div style={{ marginTop: 16, fontSize: 17, fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>
-                      Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
-                    </div>
+
+                    <Link
+                      href={{ pathname: '/watches/detail', query: { id: watch._id } }}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      aria-label={`Discover more about ${watch.modelName}`}
+                    >
+                      <div style={{ marginTop: 16, fontSize: 17, fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>
+                        Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
