@@ -229,7 +229,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
         <Stack className="main-box">
           <Stack className="left-config">
             <Stack className="image-info">
-              <img src="/img/logo/vorell-Gold.png" />
+              <img src="/img/logo/vorell-gold.png" />
               <Stack className="community-name">
                 <Typography className="name">Community Board Article</Typography>
               </Stack>

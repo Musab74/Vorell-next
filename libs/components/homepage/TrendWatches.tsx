@@ -77,9 +77,21 @@ const TrendWatches = () => {
                       {watch.modelName}
                     </Typography>
                     <Typography style={{ fontSize: 15, color: '#f1f1f1' }}>{watch.description}</Typography>
-                    <div style={{ marginTop: 8, fontWeight: 600, fontSize: 14 }}>
-                      Discover more <span style={{ fontSize: 18, marginLeft: 4 }}>→</span>
-                    </div>
+                    <a
+                      href="/watches"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        display: "inline-block",
+                        marginTop: 8,
+                        fontWeight: 600,
+                        fontSize: 14,
+                      }}
+                    >
+                      Discover more{" "}
+                      <span style={{ fontSize: 18, marginLeft: 4 }}>→</span>
+                    </a>
+
                   </div>
                 </div>
               </SwiperSlide>

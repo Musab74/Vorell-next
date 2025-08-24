@@ -113,7 +113,7 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
             {/* LEFT: Brand + Tabs */}
             <Stack className="left-config">
               <Stack className="image-info">
-                <img src="/img/logo/vorell-Gold.png" alt="Vorell" />
+                <img src="/img/logo/vorell-gold.png" alt="Vorell" />
                 <Stack className="community-name">
                   <Typography className="name">Vorell Community</Typography>
                 </Stack>
