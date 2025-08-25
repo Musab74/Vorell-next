@@ -145,7 +145,6 @@ const TopStores = () => {
         width: '100%',
         height: mdUp ? '85vh' : 420,
         minHeight: 420,
-        maxHeight: 900,
         position: 'relative',
         overflow: 'hidden',
         scrollMarginTop: '68px',
@@ -210,7 +209,7 @@ const TopStores = () => {
 
           return (
             <SwiperSlide key={watch._id}>
-              <div style={{ position: 'relative', width: '100%', height: slideHeight as any, minHeight: 420, maxHeight: 780, overflow: 'hidden', background: '#000' }}>
+              <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: 420, overflow: 'hidden', background: '#000' }}>
                 <img
                   src={hero}
                   alt={watch.modelName}
