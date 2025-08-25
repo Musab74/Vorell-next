@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Link, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
 import WestIcon from '@mui/icons-material/West';
@@ -8,7 +8,8 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useQuery } from '@apollo/client';
 import { GET_WATCHES } from '../../../apollo/user/query';
 import { Watch } from '../../types/watch/watch';
-import { Direction } from '../../enums/common.enum';
+import NextLink from 'next/link';
+
 
 const TopStores = () => {
   const device = useDeviceDetect();
@@ -133,7 +134,7 @@ const TopStores = () => {
   // DESKTOP
   return (
     <Stack
-      id="limited-section"
+      id="trend-watches-section"
       sx={{
         width: '100%',
         height: '85vh',
@@ -244,9 +245,25 @@ const TopStores = () => {
                     <Typography style={{ marginTop: 12, fontSize: descSize, color: '#f1f1f1' }}>
                       {watch.description}
                     </Typography>
-                    <div style={{ marginTop: 16, fontSize: 17, fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>
-                      Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
-                    </div>
+                    <NextLink
+                      href={{ pathname: '/watches/detail', query: { id: watch._id } }}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <div
+                        style={{
+                          marginTop: 16,
+                          fontSize: 17,
+                          fontWeight: 600,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          cursor: 'pointer',        // mouse pointer
+                          color: '#b69c70'          // luxury accent
+                        }}
+                      >
+                        Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
+                      </div>
+                    </NextLink>
+
                   </div>
                 </div>
               </div>

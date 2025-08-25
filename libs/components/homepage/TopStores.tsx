@@ -51,7 +51,7 @@ const TopStores = () => {
   const watches: Watch[] = data?.getWatches?.list ?? [];
   if (!watches.length) return null;
 
-  const slideHeight = mdUp ? '70vh' : '420px';
+  const slideHeight = mdUp ? '85vh' : '420px';
   const slidePl = mdUp ? '8vw' : '16px';
   const titleSize = mdUp ? 44 : 30;
   const descSize = mdUp ? 22 : 16;
@@ -143,7 +143,7 @@ const TopStores = () => {
       id="limited-section"
       sx={{
         width: '100%',
-        height: mdUp ? '70vh' : 420,
+        height: mdUp ? '85vh' : 420,
         minHeight: 420,
         maxHeight: 900,
         position: 'relative',
@@ -261,9 +261,24 @@ const TopStores = () => {
                     <Typography style={{ marginTop: 12, fontSize: descSize, color: '#f1f1f1' }}>
                       {watch.description}
                     </Typography>
-                    <div style={{ marginTop: 16, fontSize: 17, fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>
-                      Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
-                    </div>
+                    <Link
+                      href={{ pathname: '/watches/detail', query: { id: watch._id } }}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <div
+                        style={{
+                          marginTop: 16,
+                          fontSize: 17,
+                          fontWeight: 600,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          cursor: 'pointer',        
+                          color: '#b69c70'         
+                        }}
+                      >
+                        Discover more <span style={{ fontSize: 19, marginLeft: 5 }}>→</span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
