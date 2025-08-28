@@ -144,13 +144,6 @@ body::-webkit-scrollbar {
 			&:hover { border-color: #d4b144; color: #d4b144; }
 		  }
   
-		  /* Notifications */
-		  .notif-btn {
-			color: #fff; padding: 4px;
-			&:hover { color: #d4b144; }
-			.nav-icon { font-size: 20px; }
-		  }
-  
 		  /* Profile avatar button (logged-in) */
 		  .avatar-btn {
 			padding: 0; border-radius: 50%;

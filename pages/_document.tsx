@@ -10,7 +10,7 @@ export default function Document() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0f0f0f" />
 
-        <link rel="icon" type="image/svg+xml" href="/img/logo/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/img/logo/vorell-gold.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/img/logo/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 

@@ -27,6 +27,17 @@ export const getStaticProps = async ({ locale }: any) => ({
 
 type MemberType = 'USER' | 'STORE';
 
+function extractGQLError(err: any): string {
+  return (
+    err?.graphQLErrors?.[0]?.message ??
+    err?.networkError?.result?.errors?.[0]?.message ??
+    err?.networkError?.message ??
+    (Array.isArray(err?.message) ? err.message[0] : err?.message) ??
+    'Unexpected error'
+  );
+}
+
+
 /** Right column video — full-bleed inside the right stack */
 const JoinRightVideo = React.memo(function JoinRightVideo() {
   return (
@@ -103,8 +114,7 @@ const Join: NextPage = () => {
       await logIn(input.nick.trim(), input.password);
       await router.replace(navTarget);
     } catch (err: any) {
-      await sweetMixinErrorAlert(err?.message || 'Login failed');
-    } finally {
+      await sweetMixinErrorAlert(extractGQLError(err));    } finally {
       setLoading(false);
     }
   }, [input.nick, input.password, navTarget, router]);
@@ -116,8 +126,7 @@ const Join: NextPage = () => {
       await logIn(input.nick.trim(), input.password); // auto-login
       await router.replace(navTarget);
     } catch (err: any) {
-      await sweetMixinErrorAlert(err?.message || 'Signup failed');
-    } finally {
+      await sweetMixinErrorAlert(extractGQLError(err));    } finally {
       setLoading(false);
     }
   }, [input.nick, input.password, input.phone, input.type, navTarget, router]);
@@ -130,10 +139,14 @@ const Join: NextPage = () => {
 
   const handleEnter = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') (loginView ? doLogin() : doSignUp());
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      if (loading) return;
+      (loginView ? doLogin() : doSignUp());
     },
-    [loginView, doLogin, doSignUp]
+    [loginView, doLogin, doSignUp, loading]
   );
+  
 
   const TITLE = loginView ? t('login.title') : t('signup.title');
   const SUB = loginView ? t('login.subtitle') : t('signup.subtitle');

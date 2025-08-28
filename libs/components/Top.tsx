@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
-  Box,
   Button,
   Menu,
   MenuItem,
@@ -13,7 +12,6 @@ import { alpha, styled } from '@mui/material/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import Logout from '@mui/icons-material/Logout';
 import PersonOutline from '@mui/icons-material/PersonOutline';
 import { CaretDown } from 'phosphor-react';
@@ -305,12 +303,6 @@ const Top: React.FC = () => {
             </Link>
           ) : (
             <>
-              <IconButton className="notif-btn" onClick={() => router.push('/notifications')}>
-                <Badge color="error" variant="dot" overlap="circular">
-                  <NotificationsOutlinedIcon className="nav-icon" />
-                </Badge>
-              </IconButton>
-
               <IconButton className="avatar-btn" onClick={openProfile} sx={{ p: 0 }}>
                 <img
                   src={user?.memberImage ? `${NEXT_APP_API_URL}/${user.memberImage}` : '/img/profile/defaultUser.svg'}
